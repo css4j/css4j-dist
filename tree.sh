@@ -1,0 +1,38 @@
+#!/bin/sh -
+#
+# This script assumes that is being run on a new directory where the contents of
+# the css4j-dist repository have been copied. It will fetch the current css4j
+# and other modules from git, and create a 'release-scripts' directory.
+#
+# Requires the subversion version control software, due to Github not supporting
+# 'git archive'.
+#
+DIR=css4j
+/usr/bin/svn export https://github.com/css4j/css4j/trunk ${DIR}
+rm ${DIR}/.gitignore
+rm ${DIR}/.gitattributes
+cp -fp ${DIR}/LICENSES.txt .
+DIR=css4j-dom4j
+/usr/bin/svn export https://github.com/css4j/css4j-dom4j/trunk ${DIR}
+rm ${DIR}/.gitignore
+rm ${DIR}/.gitattributes
+DIR=css4j-agent
+/usr/bin/svn export https://github.com/css4j/css4j-agent/trunk ${DIR}
+rm ${DIR}/.gitignore
+rm ${DIR}/.gitattributes
+cat LICENSES.txt >> ../LICENSES.txt
+DIR=css4j-awt
+/usr/bin/svn export https://github.com/css4j/css4j-awt/trunk ${DIR}
+rm ${DIR}/.gitignore
+rm ${DIR}/.gitattributes
+/usr/bin/unix2dos *.txt
+if [ ! -d release-scripts ]; then
+	mkdir release-scripts
+fi
+if [ ! -d jar ]; then
+	mkdir jar
+fi
+echo Now execute:
+echo mvn
+echo mv */build/*.jar jar
+echo mv *.sh release-scripts
