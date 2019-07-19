@@ -151,12 +151,12 @@
 	</pluginManagement>
   </build>
   <name>CSS4J</name>
-  <description>Implementation of W3C's CSS Object Model API in the Java(tm) programming language</description>
-  <url>https://carte.sourceforge.io/css4j/</url>
+  <description>Implementation of W3C's DOM and CSS Object Model APIs in the Java(tm) programming language</description>
+  <url>https://css4j.github.io</url>
   <licenses>
 	<license>
 		<name>BSD 3-clause license</name>
-		<url>https://carte.sourceforge.io/css4j/LICENSE.txt</url>
+		<url>https://css4j.github.io/LICENSE.txt</url>
 	</license>
   </licenses>
   <scm>
