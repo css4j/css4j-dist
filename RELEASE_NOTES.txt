@@ -2,8 +2,8 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 1.0.0 - September 27, 2019
-----------------------------------
+Pre-2.x branch
+--------------
 
 Description
 -----------
@@ -18,20 +18,12 @@ different licensing).
   to get computed styles for elements in a DOM Document. A DOM implementation 
   is available, as well as a DOM4J backend (module css4j-dom4j) and also a DOM
   wrapper that can be used with an external DOM implementation.
-- An extension API to the base W3C style declaration.
+- An extension to the base W3C APIs.
 - A device profile API to encapsulate target device-specific information. An
   example implementation based on Java2D is in the 'render' module of the main
   Carte project.
 - A few AWT helper classes (AWT module).
 - Some helper XML-DTD classes.
-
- This library's CSS parsing is based on the SAC api and requires a SAC parser
-(see http://www.w3.org/Style/CSS/SAC/); this library has its own. To use a
-specific parser, just set the org.w3c.css.sac.parser system property to the full
-class name, for example "org.apache.batik.css.parser.Parser" for Batik's parser.
-If you do not set that property, the library will instantiate its built-in
-parser. See "Software dependencies" near the end of this document for more
-details.
 
 
 Packaging
@@ -50,10 +42,10 @@ plus the dom4j one, or all four modules.
 Java(tm) Runtime Environment requirements
 -----------------------------------------
  All the classes in the binary package have been compiled with a Java SE 
-compiler set to 1.7 compiler compliance level, except the module-info files.
+compiler set to 1.8 compiler compliance level, except the module-info files.
 
  Building the library requires a Java 12 compiler, although the resulting jar
-files can be run with a 1.7 JRE.
+files can be run with a 1.8 JRE.
 
 
 W3C Compliance
@@ -79,28 +71,17 @@ specifications are also supported):
  | Background / Border         | Yes         |
  | Color                       | Yes         |
  | Media Queries               | Partial (1) |
- | Selectors                   | Yes     (2) |
+ | Selectors                   | Yes         |
  | Transitions                 | Yes         |
- | Values                      | Yes     (3) |
- | Grid / Template / Alignment | Partial (4) |
+ | Values                      | Yes         |
+ | Grid / Template / Alignment | Partial (2) |
  |_____________________________|_____________|
 Notes:
  1) Event handling with addListener/removeListener is not supported, given that
 the library's user is supposed to be in control of the CSSCanvas instances where
 the information about such events should be available.
- 2) Modern selectors are not well supported by the current SAC api. Be careful
-when using SAC parsers other than this library's own parser (read "Software
-dependencies" for information about choosing a SAC parser).
- 3) The SAC api provides very limited support for new types, so this library
-introduced an enhancement called NSAC that only the native parser supports (see
-below). Also, calc() values are not supported by any current parser except this
-library's own parser.
- 4) Legacy gap properties (grid-row-gap, grid-column-gap, and grid-gap) are not
+ 2) Legacy gap properties (grid-row-gap, grid-column-gap, and grid-gap) are not
 supported, although the longhands can be used if declared explicitly).
-
- The SAC api does not provide support for several modern CSS3/4 constructs, so
-this library uses its own minimal extension to SAC (see the doc.style.css.nsac
-package).
 
 
 Using CSS4J
@@ -122,8 +103,6 @@ Software dependencies
 
 - The W3C SAC classes. Download sac.jar from http://www.w3.org/Style/CSS/SAC/
 
-- Apache Commons Codec. https://commons.apache.org/proper/commons-codec/
-
 - The SLF4J package, which is a logging package. See http://www.slf4j.org/ 
   for more information.
 
@@ -136,35 +115,11 @@ To build the dom4j module the following is required:
   does not support entities). See:
   http://www.extreme.indiana.edu/dist/java-repository/xpp3/distributions/
 
- In addition, to run the library you need:
-
-- A SAC implementation. There are basically three choices: this library's own
-  implementation, Apache Batik's, and SteadyState/CSSParser. To use a specific
-  SAC parser you need to set the value of the 'org.w3c.css.sac.parser' system
-  property to the parser's qualified class name. To use this library's own
-  parser you do not need to set that property (the full class name would be
-  'io.sf.carte.doc.style.css.parser.CSSParser'). To use the SteadyState parser
-  set it to 'com.steadystate.css.parser.SACParserCSS3', and for Batik's parser
-  use 'org.apache.batik.css.parser.Parser'.
-
-  If you decide to run the library with Batik's parser you need the
-  "batik-css.jar", "batik-i18n.jar" and "batik-util.jar" files that are
-  available from the latest Batik SVG toolkit release from
-  https://xmlgraphics.apache.org/batik/. The old Flute SAC parser works
-  for certain cases but is outdated and not currently maintained.
-
  Optional packages:
 
-- To run the unit tests you need recent versions of JUnit 4, Batik and
-  optionally the SteadyState/CSSParser and Flute parsers:
-    http://sourceforge.net/projects/cssparser
-    http://www.w3.org/2002/06/flutejava-1.3.zip
-  Tests and the css4j-agent module also require the validator.nu html5 parser:
+To run the unit tests you need a recent version of JUnit 4. Tests and the agent
+module also require the validator.nu html5 parser:
     https://about.validator.nu/htmlparser/
-
-  The basic reason for those testing dependencies is to make sure that basic
-  functionality still works with other parsers like Batik and SS CSSParser,
-  although the library does not need them to work.
 
 - Dom4j module: unit tests require Jaxen (https://github.com/jaxen-xpath/jaxen).
   This software was tested with 1.2.0.
