@@ -9,7 +9,7 @@ if [[ $# -eq 0 ]] ; then
 	echo "No version supplied (e.g. '0.40')"
 	exit 1
 fi
-OLDTAG=`git tag -l --sort=-taggerdate|head -1`
+OLDTAG=`git tag -l --merged 1-stable --sort=-taggerdate|head -1`
 echo "Writing changes from tag $OLDTAG"
 TITLE="CSS4J CHANGES"
 VERHDR="Version ${1}"
