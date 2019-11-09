@@ -2,8 +2,44 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Pre-2.x branch
---------------
+2.0.0-beta1
+-----------
+ It is the first beta of the 2.0 (master) branch, looking towards a final 2.0.0
+release in December 2019. Features NSAC 2.0 and a new Object Model Value API; it
+is not backwards-compatible with 1.0, but the new 2.0 APIs are more appropriate
+to deal with modern CSS. Any new development should use the 2.0 API (and hence
+the interest in releasing it as soon as possible).
+
+ NSAC 2.0 no longer inherits from stuff in the org.w3c.css.sac package (provided
+by the -not needed anymore- sac.jar file) but is an independent API, with its
+methods and features being sort of an hybrid between the old SAC and newer code.
+Some interfaces have changed significantly, and the usage of the InputSource
+class was reduced and is discouraged (a Reader is being used instead).
+
+ Of course this means that other SAC parsers are not supported, which may seem a
+loss of flexibility. However, the other parsers are stuck with CSS2 (or partial
+support for CSS3) and weren't really usable for real-world sheets. Without the
+need to support other SAC parsers, code can be cleaner and is less error-prone
+(other parser projects would be welcome to implement NSAC 2 if they wanted to).
+
+ The new Value API still uses the interface names CSSValue and CSSPrimitiveValue
+but adds others like CSSTypedValue. In the end, its usage is somewhat different
+to the old (and deprecated) W3C CSSValue API, requiring almost no type casts to
+obtain information to make decisions about value handling (type casts are only
+required when retrieving the actual encapsulated value). The categorization of
+values is different, and the dimension units are shared with NSAC 2.0 from a
+common source interface. But some methods have names similar to the old API to
+ease the transition (for example I keep getCssValueType() to retrieve the value
+category, instead of a more proper getCategory()).
+
+ Another important change is that the source-level compatibility is now for Java
+version 8 instead of 7. Comments about the new APIs are welcome.
+
+ Many 2.0 patches do not apply to 1.0 which makes it difficult to maintain. As a
+consequence, the end of life for 1.0.x would happen relatively early in 2020
+unless somebody volunteers for maintaining it (which would probably be a waste
+of time).
+
 
 Description
 -----------
@@ -44,7 +80,7 @@ Java(tm) Runtime Environment requirements
  All the classes in the binary package have been compiled with a Java SE 
 compiler set to 1.8 compiler compliance level, except the module-info files.
 
- Building the library requires a Java 12 compiler, although the resulting jar
+ Building the library requires JDK 12 or higher, although the resulting jar
 files can be run with a 1.8 JRE.
 
 
@@ -101,8 +137,6 @@ Software dependencies
 - The JCLF package. Version 4.0.4 or higher is required. Go to
   https://sourceforge.net/projects/jclf for downloads.
 
-- The W3C SAC classes. Download sac.jar from http://www.w3.org/Style/CSS/SAC/
-
 - The SLF4J package, which is a logging package. See http://www.slf4j.org/ 
   for more information.
 
@@ -124,9 +158,9 @@ module also require the validator.nu html5 parser:
 - Dom4j module: unit tests require Jaxen (https://github.com/jaxen-xpath/jaxen).
   This software was tested with 1.2.0.
 
- A Maven build (which requires Java 12) is provided. The dom4j module requires
-dom4j 2.x to build, although you should be able to run the resulting jar file
-with dom4j 1.6 if you are stuck with it.
+ A Maven build (which requires Java 12 or higher) is provided. The dom4j module
+requires dom4j 2.x to build, although you should be able to run the resulting
+jar file with dom4j 1.6 if you are stuck with it.
 
 
 Project Sites
