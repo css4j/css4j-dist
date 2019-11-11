@@ -2,9 +2,10 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-2.0.0-beta1
------------
- It is the first beta of the 2.0 (master) branch, looking towards a final 2.0.0
+Release 2.0.0-beta1 - November 11, 2019
+---------------------------------------
+
+ It is the first beta of the 2.0 (master) branch, looking forwards a final 2.0.0
 release in December 2019. Features NSAC 2.0 and a new Object Model Value API; it
 is not backwards-compatible with 1.0, but the new 2.0 APIs are more appropriate
 to deal with modern CSS. Any new development should use the 2.0 API (and hence
