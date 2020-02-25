@@ -7,7 +7,7 @@
   <!-- The Basics -->
   <groupId>io.sf.carte</groupId>
   <artifactId>css4j-dist</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <packaging>pom</packaging>
   <modules>
 	<module>css4j</module>
