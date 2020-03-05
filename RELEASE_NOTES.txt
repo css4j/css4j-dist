@@ -8,8 +8,10 @@ Release 1.0.3 - March 5, 2020 [End of Life]
 Release Highlights
 ------------------
  This is the last release in the 1.x branch, with several backported fixes from
-the master (2.0) branch. All 1.0.x users are encouraged to upgrade to 2.0 and
-later (remember that 2.x releases require Java 8).
+the master (2.0) branch. An additional 1.0.x release would still be possible if
+a security bug was found, but users should not consider this branch as being
+maintained. Therefore, all 1.0.x users are encouraged to upgrade to 2.0 or later
+(please keep in mind that 2.x releases require Java 8).
 
 
 Description
@@ -176,9 +178,9 @@ To build the dom4j module the following is required:
 - Dom4j module: unit tests require Jaxen (https://github.com/jaxen-xpath/jaxen).
   This software was tested with 1.2.0.
 
- A Maven build (which requires Java 12) is provided. The dom4j module requires
-dom4j 2.x to build, although you should be able to run the resulting jar file
-with dom4j 1.6 if you are stuck with it.
+ A Maven build (which requires Java 12 or higher) is provided. The dom4j module
+requires dom4j 2.x to build, although you should be able to run the resulting
+jar file with dom4j 1.6 if you are stuck with it.
 
 
 Project Sites
