@@ -2,16 +2,15 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 1.0.3 - March 5, 2020 [End of Life]
--------------------------------------------
+Release 1.0.4 - ???? ??, 2020 [End of Life - Unsupported]
+---------------------------------------------------------
 
 Release Highlights
 ------------------
- This is the last release in the 1.x branch, with several backported fixes from
-the master (2.0) branch. An additional 1.0.x release would still be possible if
-a security bug was found, but users should not consider this branch as being
-maintained. Therefore, all 1.0.x users are encouraged to upgrade to 2.0 or later
-(please keep in mind that 2.x releases require Java 8).
+ This release brings backports of a few important bug fixes to the 1.x branch,
+although users should upgrade to 2.0 or later as soon as possible (1.x is not
+formally maintained anymore). When upgrading, please keep in mind that 2.x
+releases require Java 8 or higher.
 
 
 Description
