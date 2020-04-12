@@ -2,7 +2,7 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 2.0.2 - April 12, 2020
+Release 2.0.2 - April 13, 2020
 ------------------------------
 
  This library handled font-size values a bit different than the other values.
