@@ -2,14 +2,33 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 2.0.1 - March 5, 2020
------------------------------
+Release 2.0.2 - April 12, 2020
+------------------------------
 
- This release comes with several small fixes, and support for two new functions
-in calc(): abs() and sign(). Several of the issues fixed were found thanks to
-the FindBugs[1] static analysis tool.
+ This library handled font-size values a bit different than the other values.
+When a font-size was expressed as a percentage, if the value of the parent font
+size could not be accurately determined the value was left as a precentage. This
+did not apply to computations that depended on the font size, like 'em' values
+in 'margin' or 'padding' properties: in that case default values were forced for
+that font size, and an absolute length was obtained.
 
-[1] https://spotbugs.github.io/
+ This procedure left a bit of potential inconsistency between computed values
+for the font-size and other properties, but was considered a trade-off that gave
+flexibility; in that way, users could apply their own font-size defaults after
+the computed style tree was evaluated, for example when applying a XSL sheet
+later.
+
+ However, the way that var() values are handled left a code path for an infinite
+loop when a default font size was not set by the style sheets, and percentages
+are used inside a var(). The issue was detected and, while a specific fix for
+var() (and also var-like stuff like env() and attr()) could be rolled, I decided
+to force font-size percentage resolution in all cases, as the safest and most
+consistent approach. So the behaviour of the library now changes a bit, but the
+reasons for it are solid.
+
+ Other than that, this release comes with interesting fixes, including one for a
+regression introduced in 2.0.1 (triggered by var() values inside gradients). All
+users are encouraged to upgrade.
 
 
 Upgrading from 1.0
