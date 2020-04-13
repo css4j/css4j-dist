@@ -6,7 +6,7 @@
 # You'll probably want to edit manually the result of executing the script.
 #
 if [[ $# -eq 0 ]] ; then
-	echo "No version supplied (e.g. '0.40')"
+	echo "No version supplied (e.g. '1.0.3')"
 	exit 1
 fi
 OLDTAG=`git tag -l --merged 1-stable --sort=-taggerdate|head -1`
