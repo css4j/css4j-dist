@@ -16,15 +16,15 @@ VERHDR="Version ${1}"
 OUTFILE="../css4j-dist/CHANGES.txt"
 echo -e "${TITLE}\\r\\n${TITLE//?/=}\\r\\n\\r\\n${VERHDR}\\r\\n${VERHDR//?/-}\\r">CHANGES.txt
 cd ../css4j
-echo -e " * Core:\\r">>${OUTFILE}
+echo -e " * Core:\\r\\n">>${OUTFILE}
 git log --reverse --pretty=format:%s ${OLDTAG}..|sed -e 's/^/- /'|fold -s|sed -r 's/^([^-])/  \1/'|sed -e 's/$/\r/'>>${OUTFILE}
 cd ../css4j-dom4j
-echo -e "\\r\\n * Dom4j module:\\r">>${OUTFILE}
+echo -e "\\r\\n * Dom4j module:\\r\\n">>${OUTFILE}
 git log --reverse --pretty=format:%s ${OLDTAG}..|sed -e 's/^/- /'|fold -s|sed -r 's/^([^-])/  \1/'|sed -e 's/$/\r/'>>${OUTFILE}
 cd ../css4j-agent
-echo -e "\\r\\n * Agent module:\\r">>${OUTFILE}
+echo -e "\\r\\n * Agent module:\\r\\n">>${OUTFILE}
 git log --reverse --pretty=format:%s ${OLDTAG}..|sed -e 's/^/- /'|fold -s|sed -r 's/^([^-])/  \1/'|sed -e 's/$/\r/'>>${OUTFILE}
 cd ../css4j-awt
-echo -e "\\r\\n * AWT module:\\r">>${OUTFILE}
+echo -e "\\r\\n * AWT module:\\r\\n">>${OUTFILE}
 git log --reverse --pretty=format:%s ${OLDTAG}..|sed -e 's/^/- /'|fold -s|sed -r 's/^([^-])/  \1/'|sed -e 's/$/\r/'>>${OUTFILE}
 cd ../css4j-dist
