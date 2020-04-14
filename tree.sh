@@ -20,7 +20,7 @@ DIR=css4j-agent
 /usr/bin/svn export https://github.com/css4j/css4j-agent/trunk ${DIR}
 rm ${DIR}/.gitignore
 rm ${DIR}/.gitattributes
-cat LICENSES.txt >> ../LICENSES.txt
+cat ${DIR}/LICENSES.txt >> LICENSES.txt
 DIR=css4j-awt
 /usr/bin/svn export https://github.com/css4j/css4j-awt/trunk ${DIR}
 rm ${DIR}/.gitignore
