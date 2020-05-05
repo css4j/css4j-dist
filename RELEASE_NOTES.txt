@@ -12,11 +12,13 @@ Upgrading from 2.0
 ------------------
  The changes in 2.1 vs. 2.0 are mostly about NSAC: a few new lexical types were
 added (including one for calc() which in 2.0 was considered a generic function).
-Also, it adds support for env() computed values by means of an addition to the
-StyleDatabase interface.
+New primitive types for the cubic-bezier() and steps() easing functions were
+also added. Finally, it adds support for env() computed values by means of an
+addition to the StyleDatabase interface.
 
  Which means that you can handle 2.1 as a drop-in replacement for 2.0 unless you
-were using NSAC directly or are implementing the StyleDatabase interface.
+were either: a) using NSAC directly, b) checking for cubic-bezier() or steps(),
+or c) are implementing the StyleDatabase interface.
 
 
 Description
