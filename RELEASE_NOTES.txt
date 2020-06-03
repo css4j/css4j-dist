@@ -5,7 +5,11 @@
 Release 2.1.0 - ???? ??, 2020
 -----------------------------
 
- This release features NSAC 2.1 and adds support for env() in computed values.
+ This release features the following (compared to 2.0):
+ 
+ - NSAC 2.1.
+ - Support for empty custom properties ("--foo:;").
+ - env() is now processed in computed values.
 
 
 Upgrading from 2.0
@@ -13,8 +17,13 @@ Upgrading from 2.0
  The changes in 2.1 vs. 2.0 are mostly about NSAC: a few new lexical types were
 added (including one for calc() which in 2.0 was considered a generic function).
 New primitive types for the cubic-bezier() and steps() easing functions were
-also added. Finally, it adds support for env() computed values by means of an
-addition to the StyleDatabase interface.
+also added.
+
+ Also thanks to an addition to NSAC, setting a custom property to an empty value
+is now supported, like "--My-property:;".
+
+ Finally, it adds support for env() computed values by means of an addition to
+the StyleDatabase interface.
 
  Which means that you can handle 2.1 as a drop-in replacement for 2.0 unless you
 were either: a) using NSAC directly, b) checking for cubic-bezier() or steps(),
