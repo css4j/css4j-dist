@@ -2,40 +2,17 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 1.0.4 - April 14, 2020 [End of Life - Unsupported]
-----------------------------------------------------------
+Release 1.0.5 - June 5, 2020 [This release is EOL and not formally supported]
+-----------------------------------------------------------------------------
 
 Release Highlights
 ------------------
- This release brings backports of a few important bug fixes to the 1.x branch,
-although users should upgrade to 2.0 or later as soon as possible (1.x is not
-formally maintained anymore). When upgrading, please keep in mind that 2.x
-releases require Java 8 or higher.
+ This release brings backports of a few bug fixes to the 1.x branch, although
+users should upgrade to 2.0 or later as soon as possible (1.x is not formally
+maintained anymore). When upgrading, please keep in mind that 2.x releases
+require Java 8 or higher.
 
- * The following is adapted from the 2.0.2 Release Notes: *
-
- This library handled font-size values a bit different than the other values.
-When a font-size was expressed as a percentage, if the value of the parent font
-size could not be accurately determined the value was left as a precentage in
-the serialized style. This did not apply to computations that depended on the
-font size, like 'em' values in 'margin' or 'padding' properties: in that case
-default values were forced for that font size, and an absolute length was
-obtained.
-
- This procedure allows easy inspection of the specified vaues, but is inadequate
-when the serialized style is used as the input for other software packages.
-Changes to the library were made in the past to address this, but percentages of
-font-size values were kept.
-
- Not only the serialization is inadequate: it also introduces a degradation in
-performance that can be highly noticeable with heavy documents (thousands of
-nodes, several tens of thousand rules). So the serialization of computed font
-sizes now avoids percentages: if you had unit tests depending on that, you may
-have to change them.
-
- Other than that, this release comes with interesting fixes, including one for a
-regression introduced in 1.0.3 (triggered by var() values inside gradients). All
-users are encouraged to upgrade.
+ All 1.0 users are encouraged to upgrade at least to this release.
 
 
 Description
