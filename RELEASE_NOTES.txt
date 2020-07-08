@@ -2,7 +2,7 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 1.0.5 - June 5, 2020 [This release is EOL and not formally supported]
+Release 1.0.6 - July 8, 2020 [This release is EOL and not formally supported]
 -----------------------------------------------------------------------------
 
 Release Highlights
