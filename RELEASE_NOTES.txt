@@ -7,11 +7,9 @@ Release 2.1.0 - ???? ??, 2020
 
  This release features the following (compared to 2.0):
  
- - NSAC 2.1 (including initial support for semicolon-separated function
-   arguments).
+ - NSAC 2.1.
  - Support for empty custom properties ("--foo:;").
  - env() is now processed in computed values.
- - More compliant processing of keywords in custom properties.
 
 
 Upgrading from 2.0
@@ -30,14 +28,6 @@ the StyleDatabase interface.
  Which means that you can handle 2.1 as a drop-in replacement for 2.0 unless you
 were either: a) using NSAC directly, b) checking for cubic-bezier() or steps(),
 or c) are implementing the StyleDatabase interface.
-
- Other changes are about compliance. For example, in 2.0 and earlier when the
-library found something like:
-
-    --foo: inherit;
-
-it applied the inheritance to the custom property itself. Now that keyword is
-passed through the var() substitution.
 
 
 Description
