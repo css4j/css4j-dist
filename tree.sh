@@ -8,21 +8,26 @@
 # 'git archive'.
 #
 DIR=css4j
-/usr/bin/svn export https://github.com/css4j/css4j/branches/2.0-stable ${DIR}
+if [ -r /usr/bin/svn ]; then
+	SVN=/usr/bin/svn
+else
+	SVN=svn
+fi
+${SVN} export https://github.com/css4j/css4j/branches/2.0-stable ${DIR}
 rm ${DIR}/.gitignore
 rm ${DIR}/.gitattributes
 cp -fp ${DIR}/LICENSES.txt .
 DIR=css4j-dom4j
-/usr/bin/svn export https://github.com/css4j/css4j-dom4j/branches/2.0-stable ${DIR}
+${SVN} export https://github.com/css4j/css4j-dom4j/branches/2.0-stable ${DIR}
 rm ${DIR}/.gitignore
 rm ${DIR}/.gitattributes
 DIR=css4j-agent
-/usr/bin/svn export https://github.com/css4j/css4j-agent/branches/2.0-stable ${DIR}
+${SVN} export https://github.com/css4j/css4j-agent/branches/2.0-stable ${DIR}
 rm ${DIR}/.gitignore
 rm ${DIR}/.gitattributes
 cat ${DIR}/LICENSES.txt >> LICENSES.txt
 DIR=css4j-awt
-/usr/bin/svn export https://github.com/css4j/css4j-awt/branches/2.0-stable ${DIR}
+${SVN} export https://github.com/css4j/css4j-awt/branches/2.0-stable ${DIR}
 rm ${DIR}/.gitignore
 rm ${DIR}/.gitattributes
 /usr/bin/unix2dos *.txt
