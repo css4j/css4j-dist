@@ -37,6 +37,33 @@
 	<testOutputDirectory>${project.build.directory}/testbin</testOutputDirectory>
 	<sourceDirectory>${project.basedir}/src</sourceDirectory>
 	<testSourceDirectory>${project.basedir}/junit</testSourceDirectory>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-source-plugin</artifactId>
+			<version>3.2.1</version>
+			<executions>
+				<execution>
+					<id>attach-sources</id>
+					<goals>
+						<goal>jar-no-fork</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+		<plugin>
+			<groupId>io.github.zlika</groupId>
+			<artifactId>reproducible-build-maven-plugin</artifactId>
+			<version>0.12</version>
+			<executions>
+				<execution>
+					<goals>
+						<goal>strip-jar</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
 	<pluginManagement>
 		<plugins>
 			<plugin>
@@ -117,18 +144,6 @@
 					<addMavenDescriptor>false</addMavenDescriptor>
 				</archive>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>io.github.zlika</groupId>
-				<artifactId>reproducible-build-maven-plugin</artifactId>
-				<version>0.11</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>strip-jar</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</pluginManagement>
