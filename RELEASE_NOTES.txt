@@ -2,20 +2,30 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 1.0.7 - July 28, 2020 [This release is EOL and not formally supported]
-------------------------------------------------------------------------------
+Release 1.0.8 - August 15, 2020 [This release is EOL and not formally supported]
+--------------------------------------------------------------------------------
 
 Release Highlights
 ------------------
- The 1.x branch is vulnerable to denial of service attacks in var() substitution.
-Although this release has mitigation code, a carefully crafted style sheet that
-specifically targets css4j could be used to cause a DoS. Therefore, the usage of
-1.x to process untrusted CSS should be avoided.
-
- This release backports a few 2.0 improvements to the 1.x branch, although users
-should upgrade to 2.0 or later as soon as possible (1.x is not formally
+ This release backports a few 2.x improvements to the 1.x branch, although users
+should upgrade to 2.1 or later as soon as possible (1.x is not formally
 maintained anymore). When upgrading, please keep in mind that 2.x releases
 require Java 8 or higher.
+
+ - The most important change is that 1.0.8 now has resource limits: style sheets
+   are limited to 100MB (this can be changed at the NSAC level) and DTDs (only
+   those directly parsed by this library: ContentModel and EntityFinder) to 1MB.
+   Once the limit is hit, a SecurityException is thrown.
+
+ - The DefaultEntityResolver was further security-hardened.
+
+ - A few bug fixes in shorthands and serialization of attribute selectors.
+
+ - The javadocs no longer include the 'uparser' package, which is not exported
+   by the library. To allow usage from Java 7 or 8, they include a package-list
+   file built with an improved version of the javadoc-packagelist-maven-plugin.
+
+ - Both the unit tests and the build process are a bit more Windows-friendly.
 
 
 Description
