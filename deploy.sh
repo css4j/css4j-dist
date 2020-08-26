@@ -6,7 +6,7 @@ if [[ $# -eq 0 ]] ; then
 	echo "No version supplied (e.g. '2.1.0')"
 	exit 1
 fi
-REPODIR="/C/Users/*****/www/css4j.github.io/maven"
+REPODIR="${HOME}/www/css4j.github.io/maven"
 GROUPDIR=${REPODIR}/io/sf/carte
 # Deploy main POM
 if [ -f ${GROUPDIR}/css4j-dist/maven-metadata.xml ]; then
