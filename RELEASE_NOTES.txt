@@ -2,8 +2,8 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 1.0.8 - August 15, 2020 [This release is EOL and not formally supported]
---------------------------------------------------------------------------------
+Release 1.0.9 - ????? ??, 2020 [This release is EOL and not formally supported]
+-------------------------------------------------------------------------------
 
 Release Highlights
 ------------------
@@ -12,20 +12,14 @@ should upgrade to 2.1 or later as soon as possible (1.x is not formally
 maintained anymore). When upgrading, please keep in mind that 2.x releases
 require Java 8 or higher.
 
- - The most important change is that 1.0.8 now has resource limits: style sheets
-   are limited to 100MB (this can be changed at the NSAC level) and DTDs (only
-   those directly parsed by this library: ContentModel and EntityFinder) to 1MB.
-   Once the limit is hit, a SecurityException is thrown.
 
- - The DefaultEntityResolver was further security-hardened.
-
- - A few bug fixes in shorthands and serialization of attribute selectors.
-
- - The javadocs no longer include the 'uparser' package, which is not exported
-   by the library. To allow usage from Java 7 or 8, they include a package-list
-   file built with an improved version of the javadoc-packagelist-maven-plugin.
-
- - Both the unit tests and the build process are a bit more Windows-friendly.
+BUGS
+----
+ The 1.x branch has known bugs, and most of them are considered as too difficult
+to fix with the 1.x API. If you keep using 1.x instead of the latest version
+(currently 2.1), you acknowledge that the 1.x software has more bugs, is less
+compliant with the specifications and has less protection against security
+vulnerabilities.
 
 
 Description
