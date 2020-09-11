@@ -2,9 +2,7 @@
 
 This repository contains the root of the css4j distribution.
 
-Building from the git repositories requires the `subversion` version control software, due to Github not supporting `git archive`.
-
-To build, you need a JDK version 12 and a copy of this repository first, then run the `tree.sh` script. For example:
+To build, you need a JDK version 12 or higher and a copy of this repository first, then run the `tree.sh` script. For example:
 ```
     git clone https://github.com/css4j/css4j-dist.git css4j-snapshot
     cd css4j-snapshot
