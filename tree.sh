@@ -4,30 +4,29 @@
 # the css4j-dist repository have been copied. It will fetch the current css4j
 # and other modules from git, and create a 'release-scripts' directory.
 #
-# Requires the subversion version control software, due to Github not supporting
-# 'git archive'.
+# Uses 'git clone --depth 1' due to Github not supporting 'git archive'.
 #
+GIT="git clone --depth 1 -c core.autocrlf=input -c core.eol=lf --branch 1-stable"
 DIR=css4j
-if [ -r /usr/bin/svn ]; then
-	SVN=/usr/bin/svn
-else
-	SVN=svn
-fi
-${SVN} export https://github.com/css4j/css4j/branches/1-stable ${DIR}
+${GIT} https://github.com/css4j/${DIR}.git
+rm -fr ${DIR}/.git
 rm ${DIR}/.gitignore
 rm ${DIR}/.gitattributes
 cp -fp ${DIR}/LICENSES.txt .
 DIR=css4j-dom4j
-${SVN} export https://github.com/css4j/css4j-dom4j/branches/1-stable ${DIR}
+${GIT} https://github.com/css4j/${DIR}.git
+rm -fr ${DIR}/.git
 rm ${DIR}/.gitignore
 rm ${DIR}/.gitattributes
 DIR=css4j-agent
-${SVN} export https://github.com/css4j/css4j-agent/branches/1-stable ${DIR}
+${GIT} https://github.com/css4j/${DIR}.git
+rm -fr ${DIR}/.git
 rm ${DIR}/.gitignore
 rm ${DIR}/.gitattributes
 cat ${DIR}/LICENSES.txt >> LICENSES.txt
 DIR=css4j-awt
-${SVN} export https://github.com/css4j/css4j-awt/branches/1-stable ${DIR}
+${GIT} https://github.com/css4j/${DIR}.git
+rm -fr ${DIR}/.git
 rm ${DIR}/.gitignore
 rm ${DIR}/.gitattributes
 /usr/bin/unix2dos *.txt
