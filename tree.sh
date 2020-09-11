@@ -7,7 +7,7 @@
 # Uses 'git clone --depth 1' due to Github not supporting 'git archive'.
 #
 DIR=css4j
-GIT="git clone --depth 1"
+GIT="git clone --depth 1 -c core.autocrlf=input -c core.eol=lf"
 ${GIT} https://github.com/css4j/${DIR}.git
 rm -fr ${DIR}/.git
 rm ${DIR}/.gitignore
