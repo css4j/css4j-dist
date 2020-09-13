@@ -2,8 +2,8 @@
 #
 # Deploy artifacts to temporary css4j.github.io repository.
 #
-if [[ $# -eq 0 ]] ; then
-	echo "No version supplied (e.g. '2.1.0')"
+if [[ $# -ne 2 ]] ; then
+	echo "No versions supplied (e.g. '2.1.0 1.0.0')"
 	exit 1
 fi
 REPODIR="${HOME}/www/css4j.github.io/maven"
@@ -17,6 +17,23 @@ mvn install:install-file -Dfile=pom.xml -DpomFile=pom.xml -DgroupId=io.sf.carte 
 sha1sum -b pom.xml|awk '{print $1}' > ${GROUPDIR}/css4j-dist/${1}/css4j-dist-${1}.pom.sha1
 md5sum -b pom.xml|awk '{print $1}' > ${GROUPDIR}/css4j-dist/${1}/css4j-dist-${1}.pom.md5
 mv -f ${GROUPDIR}/css4j-dist/maven-metadata-local.xml ${GROUPDIR}/css4j-dist/maven-metadata.xml
+# Tokenproducer
+if [ -f ${GROUPDIR}/tokenproducer/maven-metadata.xml ]; then
+	mv -f ${GROUPDIR}/tokenproducer/maven-metadata.xml ${GROUPDIR}/tokenproducer/maven-metadata-local.xml
+fi
+mvn install:install-file -Dfile=jar/tokenproducer-${2}.jar -DpomFile=tokenproducer/pom.xml -DgroupId=io.sf.carte -DartifactId=tokenproducer -Dversion=${2} -Dpackaging=jar -DlocalRepositoryPath=${REPODIR}
+mvn install:install-file -Dfile=jar/tokenproducer-${2}-sources.jar -DgroupId=io.sf.carte -DartifactId=tokenproducer -Dversion=${2} -Dpackaging=jar -Dclassifier=sources -DlocalRepositoryPath=${REPODIR}
+mvn install:install-file -Dfile=jar/tokenproducer-${2}-javadoc.jar -DgroupId=io.sf.carte -DartifactId=tokenproducer -Dversion=${2} -Dpackaging=jar -Dclassifier=javadoc -DlocalRepositoryPath=${REPODIR}
+# Digests
+sha1sum -b tokenproducer/pom.xml|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.pom.sha1
+md5sum -b tokenproducer/pom.xml|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.pom.md5
+sha1sum -b jar/tokenproducer-${2}.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.jar.sha1
+md5sum -b jar/tokenproducer-${2}.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.jar.md5
+sha1sum -b jar/tokenproducer-${2}-sources.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-sources.jar.sha1
+md5sum -b jar/tokenproducer-${2}-sources.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-sources.jar.md5
+sha1sum -b jar/tokenproducer-${2}-javadoc.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-javadoc.jar.sha1
+md5sum -b jar/tokenproducer-${2}-javadoc.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-javadoc.jar.md5
+mv -f ${GROUPDIR}/tokenproducer/maven-metadata-local.xml ${GROUPDIR}/tokenproducer/maven-metadata.xml
 # Core module
 if [ -f ${GROUPDIR}/css4j/maven-metadata.xml ]; then
 	mv -f ${GROUPDIR}/css4j/maven-metadata.xml ${GROUPDIR}/css4j/maven-metadata-local.xml

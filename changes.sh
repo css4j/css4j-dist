@@ -27,5 +27,8 @@ git log --reverse --pretty=format:%s ${OLDTAG}..|sed -e 's/^/- /'|fold -s|sed -r
 cd ../css4j-awt
 echo -en "\\n\\r\\n * AWT module:\\r\\n">>${OUTFILE}
 git log --reverse --pretty=format:%s ${OLDTAG}..|sed -e 's/^/- /'|fold -s|sed -r 's/^([^-])/  \1/'|sed -e 's/$/\r/'>>${OUTFILE}
+cd ../tokenproducer
+echo -en "\\n\\r\\n * Tokenproducer module:\\r\\n">>${OUTFILE}
+git log --reverse --pretty=format:%s ${OLDTAG}..|sed -e 's/^/- /'|fold -s|sed -r 's/^([^-])/  \1/'|sed -e 's/$/\r/'>>${OUTFILE}
 echo -en "\\n">>${OUTFILE}
 cd ../css4j-dist

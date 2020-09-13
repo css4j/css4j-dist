@@ -2,37 +2,17 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 2.1.0 - August 15, 2020
+Release 3.0.0 - ?????? ??, 2020
 -------------------------------
 
- This release features the following (compared to 2.0):
+ This release features the following (compared to 2.1):
  
- - NSAC 2.1.
- - Support for empty custom properties ("--foo:;").
- - env() is now processed in computed values.
- - The parsing is a bit more Windows-friendly. Previous versions produced
-   different whitespaces when parsing custom CSS rules for Windows and Unix.
-   That was enough to break some unit tests on Windows.
-
- In short, 2.1.0 is a bit more spec-compliant and a good refinement over 2.0.
+ - More modules.
 
 
-Upgrading from 2.0
+Upgrading from 2.1
 ------------------
- The changes in 2.1 vs. 2.0 are mostly about NSAC: a few new lexical types were
-added (including one for calc() which in 2.0 was considered a generic function).
-New primitive types for the cubic-bezier() and steps() easing functions were
-also added.
-
- Also thanks to an addition to NSAC, setting a custom property to an empty value
-is now supported, like "--My-property:;".
-
- Finally, it adds support for env() computed values by means of an addition to
-the StyleDatabase interface.
-
- Which means that you can handle 2.1 as a drop-in replacement for 2.0 unless you
-were either: a) using NSAC directly, b) checking for cubic-bezier() or steps(),
-or c) are implementing the StyleDatabase interface.
+ Now you can use finer-grained modules.
 
 
 Description
@@ -64,9 +44,9 @@ Packaging
 - User agent module: file css4j-agent-<version>.jar
 - Dom4j backend module: file css4j-dom4j-<version>.jar
 - AWT module, with AWT helper classes: file css4j-awt-<version>.jar
+- Tokenproducer-uparser module: file tokenproducer-<version>.jar
 
- Depending on your use case, you may just need the core module, the core module
-plus the dom4j one, or all four modules.
+ Depending on your use case, you may need different modules.
 
 
 Java(tm) Runtime Environment requirements
