@@ -11,6 +11,8 @@
   <packaging>pom</packaging>
   <modules>
 	<module>tokenproducer</module>
+	<module>carte-util</module>
+	<module>xml-dtd</module>
 	<module>css4j</module>
 	<module>css4j-agent</module>
 	<module>css4j-dom4j</module>
@@ -60,6 +62,27 @@
 				<execution>
 					<goals>
 						<goal>strip-jar</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-javadoc-plugin</artifactId>
+			<version>3.1.0</version>
+			<configuration>
+				<source>8</source>
+				<quiet>true</quiet>
+				<doclint>none</doclint>
+				<links>
+					<link>https://docs.oracle.com/javase/8/docs/api/</link>
+				</links>
+			</configuration>
+			<executions>
+				<execution>
+					<id>attach-javadocs</id>
+					<goals>
+						<goal>jar</goal>
 					</goals>
 				</execution>
 			</executions>
@@ -117,24 +140,6 @@
 					<disableXmlReport>true</disableXmlReport>
 					<printSummary>false</printSummary>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.1.0</version>
-				<configuration>
-					<source>8</source>
-					<quiet>true</quiet>
-					<doclint>none</doclint>
-				</configuration>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -34,6 +34,40 @@ md5sum -b jar/tokenproducer-${2}-sources.jar|awk '{print $1}' > ${GROUPDIR}/toke
 sha1sum -b jar/tokenproducer-${2}-javadoc.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-javadoc.jar.sha1
 md5sum -b jar/tokenproducer-${2}-javadoc.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-javadoc.jar.md5
 mv -f ${GROUPDIR}/tokenproducer/maven-metadata-local.xml ${GROUPDIR}/tokenproducer/maven-metadata.xml
+# Carte Util
+if [ -f ${GROUPDIR}/carte-util/maven-metadata.xml ]; then
+	mv -f ${GROUPDIR}/carte-util/maven-metadata.xml ${GROUPDIR}/carte-util/maven-metadata-local.xml
+fi
+mvn install:install-file -Dfile=jar/carte-util-${1}.jar -DpomFile=carte-util/pom.xml -DgroupId=io.sf.carte -DartifactId=carte-util -Dversion=${1} -Dpackaging=jar -DlocalRepositoryPath=${REPODIR}
+mvn install:install-file -Dfile=jar/carte-util-${1}-sources.jar -DgroupId=io.sf.carte -DartifactId=carte-util -Dversion=${1} -Dpackaging=jar -Dclassifier=sources -DlocalRepositoryPath=${REPODIR}
+mvn install:install-file -Dfile=jar/carte-util-${1}-javadoc.jar -DgroupId=io.sf.carte -DartifactId=carte-util -Dversion=${1} -Dpackaging=jar -Dclassifier=javadoc -DlocalRepositoryPath=${REPODIR}
+# Digests
+sha1sum -b carte-util/pom.xml|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}.pom.sha1
+md5sum -b carte-util/pom.xml|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}.pom.md5
+sha1sum -b jar/carte-util-${1}.jar|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}.jar.sha1
+md5sum -b jar/carte-util-${1}.jar|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}.jar.md5
+sha1sum -b jar/carte-util-${1}-sources.jar|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}-sources.jar.sha1
+md5sum -b jar/carte-util-${1}-sources.jar|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}-sources.jar.md5
+sha1sum -b jar/carte-util-${1}-javadoc.jar|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}-javadoc.jar.sha1
+md5sum -b jar/carte-util-${1}-javadoc.jar|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}-javadoc.jar.md5
+mv -f ${GROUPDIR}/carte-util/maven-metadata-local.xml ${GROUPDIR}/carte-util/maven-metadata.xml
+# XML-DTD
+if [ -f ${GROUPDIR}/xml-dtd/maven-metadata.xml ]; then
+	mv -f ${GROUPDIR}/xml-dtd/maven-metadata.xml ${GROUPDIR}/xml-dtd/maven-metadata-local.xml
+fi
+mvn install:install-file -Dfile=jar/xml-dtd-${1}.jar -DpomFile=xml-dtd/pom.xml -DgroupId=io.sf.carte -DartifactId=xml-dtd -Dversion=${1} -Dpackaging=jar -DlocalRepositoryPath=${REPODIR}
+mvn install:install-file -Dfile=jar/xml-dtd-${1}-sources.jar -DgroupId=io.sf.carte -DartifactId=xml-dtd -Dversion=${1} -Dpackaging=jar -Dclassifier=sources -DlocalRepositoryPath=${REPODIR}
+mvn install:install-file -Dfile=jar/xml-dtd-${1}-javadoc.jar -DgroupId=io.sf.carte -DartifactId=xml-dtd -Dversion=${1} -Dpackaging=jar -Dclassifier=javadoc -DlocalRepositoryPath=${REPODIR}
+# Digests
+sha1sum -b xml-dtd/pom.xml|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}.pom.sha1
+md5sum -b xml-dtd/pom.xml|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}.pom.md5
+sha1sum -b jar/xml-dtd-${1}.jar|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}.jar.sha1
+md5sum -b jar/xml-dtd-${1}.jar|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}.jar.md5
+sha1sum -b jar/xml-dtd-${1}-sources.jar|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}-sources.jar.sha1
+md5sum -b jar/xml-dtd-${1}-sources.jar|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}-sources.jar.md5
+sha1sum -b jar/xml-dtd-${1}-javadoc.jar|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}-javadoc.jar.sha1
+md5sum -b jar/xml-dtd-${1}-javadoc.jar|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}-javadoc.jar.md5
+mv -f ${GROUPDIR}/xml-dtd/maven-metadata-local.xml ${GROUPDIR}/xml-dtd/maven-metadata.xml
 # Core module
 if [ -f ${GROUPDIR}/css4j/maven-metadata.xml ]; then
 	mv -f ${GROUPDIR}/css4j/maven-metadata.xml ${GROUPDIR}/css4j/maven-metadata-local.xml
