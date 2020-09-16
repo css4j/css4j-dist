@@ -2,12 +2,12 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 2.0.5 - July 28, 2020
------------------------------
+Release 2.0.6 - September 16, 2020
+----------------------------------
 
 Highlights
 ----------
- Fix for a DoS vulnerability in var() substitution.
+ Quite a few fixes, and support for SVG 1.1 DTD in DefaultEntityResolver.
 
 
 Upgrading from 1.0
