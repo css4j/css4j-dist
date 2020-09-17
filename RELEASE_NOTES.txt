@@ -2,17 +2,35 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 3.0.0 - ?????? ??, 2020
--------------------------------
+Release 3.0.0 - September 17, 2020
+----------------------------------
 
- This release features the following (compared to 2.1):
- 
- - More modules.
+ Three modules were split out from the css4j module in 2.x: tokenproducer,
+carte-util and xml-dtd. This should give more flexibility to developers that
+only want one of them (or want to use css4j without xml-dtd).
 
 
 Upgrading from 2.1
 ------------------
- Now you can use finer-grained modules.
+ Now you can use finer-grained modules, but if you used css4j together with DTD
+classes, in Maven you now need to specify the xml-dtd module separately, like:
+
+    <dependency>
+		<groupId>io.sf.carte</groupId>
+		<artifactId>xml-dtd</artifactId>
+		<version>${css4j.version}</version>
+		<type>jar</type>
+		<scope>compile</scope>
+		<optional>true</optional>
+    </dependency>
+    <dependency>
+		<groupId>io.sf.carte</groupId>
+		<artifactId>css4j</artifactId>
+		<version>${css4j.version}</version>
+		<type>jar</type>
+		<scope>compile</scope>
+		<optional>true</optional>
+    </dependency>
 
 
 Description
@@ -44,6 +62,8 @@ Packaging
 - User agent module: file css4j-agent-<version>.jar
 - Dom4j backend module: file css4j-dom4j-<version>.jar
 - AWT module, with AWT helper classes: file css4j-awt-<version>.jar
+- XML-DTD module (for DTD utilities): file xml-dtd-<version>.jar
+- Carte-util module: file carte-util-<version>.jar
 - Tokenproducer-uparser module: file tokenproducer-<version>.jar
 
  Depending on your use case, you may need different modules.
