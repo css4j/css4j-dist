@@ -2,7 +2,7 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 3.0.0 - September 17, 2020
+Release 3.0.0 - September 19, 2020
 ----------------------------------
 
  Three modules were split out from the css4j module in 2.x: tokenproducer,
@@ -21,7 +21,7 @@ classes, in Maven you now need to specify the xml-dtd module separately, like:
 		<version>${css4j.version}</version>
 		<type>jar</type>
 		<scope>compile</scope>
-		<optional>true</optional>
+		<optional>false</optional>
     </dependency>
     <dependency>
 		<groupId>io.sf.carte</groupId>
@@ -29,8 +29,24 @@ classes, in Maven you now need to specify the xml-dtd module separately, like:
 		<version>${css4j.version}</version>
 		<type>jar</type>
 		<scope>compile</scope>
-		<optional>true</optional>
+		<optional>false</optional>
     </dependency>
+
+ Then, there are the following API changes that you may need to address:
+
+- CSSOM: moved CSSCanvas, Viewport from 'agent' to 'style.css' package. The old
+  interfaces can still be used (they inherit from the new), but are deprecated.
+- Moved BooleanCondition, BooleanConditionFactory, MediaFeaturePredicate,
+  MediaQueryFactory and MediaQueryHandler from 'parser' to 'style.css' package.
+  The reason: 'parser' is supposed to be mostly an implementation package, and
+  this move would allow other implementations to exist.
+- DOM API: introduced interface 'StringList' and two implementations of it.
+- CSSOM: StringList is now used in comment processing instead of List<String>,
+  and enablePrecedingComments() was added to AbstractCSSRule.
+- CSSOM: removed the clone(AbstractCSSStyleSheet) method from CSSRule interface.
+  Use AbstractCSSRule.clone(AbstractCSSStyleSheet) instead.
+- CSSOM: method SACErrorHandler.mapError() now takes a CSSRule instead of an
+  AbstractCSSRule (to make it more generic and allow other implementations).
 
 
 Description
