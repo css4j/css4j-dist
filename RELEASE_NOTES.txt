@@ -2,16 +2,16 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 3.0.0 - September 19, 2020
+Release 3.0.1 - ????????? ??, 2020
 ----------------------------------
-
- Three modules were split out from the css4j module in 2.x: tokenproducer,
-carte-util and xml-dtd. This should give more flexibility to developers that
-only want one of them (or want to use css4j without xml-dtd).
 
 
 Upgrading from 2.1
 ------------------
+ Three modules were split out from the css4j module in 2.x: tokenproducer,
+carte-util and xml-dtd. This should give more flexibility to developers that
+only want one of them (or want to use css4j without xml-dtd).
+
  Now you can use finer-grained modules, but if you used css4j together with DTD
 classes, in Maven you now need to specify the xml-dtd module separately, like:
 
@@ -87,8 +87,8 @@ Packaging
 
 Java(tm) Runtime Environment requirements
 -----------------------------------------
- All the classes in the binary package have been compiled with a Java SE 
-compiler set to 1.8 compiler compliance level, except the module-info files.
+ All the classes in the binary package have been compiled with a Java compiler
+set to 1.8 compiler compliance level, except the module-info files.
 
  Building the library requires JDK 12 or higher, although the resulting jar
 files can be run with a 1.8 JRE.
