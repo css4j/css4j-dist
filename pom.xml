@@ -97,10 +97,6 @@
 						<id>default-compile</id>
 						<configuration>
 							<release>11</release>
-							<compilerArgs>
-								<arg>--add-modules</arg>
-								<arg>java.xml,jdk.xml.dom</arg>
-							</compilerArgs>
 						</configuration>
 					</execution>
 					<execution>
