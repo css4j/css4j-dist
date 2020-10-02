@@ -87,6 +87,19 @@ jobs:
           # Version Spec of the version to use.  Examples: 10.x, 10.15.1, >=10.15.0
           maven-version: 3.6.3
 
-      # Runs Maven
+      - name: download JCLF pom
+        uses: wei/curl@v1
+        with:
+          args: --output jclf-4.1.0.pom https://css4j.github.io/maven/io/sf/jclf/jclf/4.1.0/jclf-4.1.0.pom
+
+      - name: download JCLF jar
+        uses: wei/curl@v1
+        with:
+          args: --output jclf-4.1.0.jar https://sourceforge.net/projects/jclf/files/jclf/4.1.0/jclf-4.1.0.jar/download
+
+      - name: Install JCLF
+        run: mvn install:install-file -Dfile=jclf-4.1.0.jar -DpomFile=jclf-4.1.0.pom -DgroupId=io.sf.jclf -DartifactId=jclf -Dversion=4.1.0 -Dpackaging=jar
+
+      # Runs Maven build
       - name: Maven build
         run: mvn package
