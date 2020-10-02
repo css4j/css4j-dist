@@ -74,13 +74,6 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
 
-      - name: Cache Maven packages
-        uses: actions/cache@v2.1.1
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-
       - name: Setup Maven
         uses: stCarolas/setup-maven@v1
         with:
@@ -99,6 +92,13 @@ jobs:
 
       - name: Install JCLF
         run: mvn install:install-file -Dfile=jclf-4.1.0.jar -DpomFile=jclf-4.1.0.pom -DgroupId=io.sf.jclf -DartifactId=jclf -Dversion=4.1.0 -Dpackaging=jar
+
+      - name: Cache Maven packages
+        uses: actions/cache@v2.1.1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
 
       # Runs Maven build
       - name: Maven build
