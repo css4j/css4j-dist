@@ -85,7 +85,7 @@ jobs:
         uses: stCarolas/setup-maven@v1
         with:
           # Version Spec of the version to use.  Examples: 10.x, 10.15.1, >=10.15.0
-          maven-version: 3.x
+          maven-version: 3.6.3
 
       # Runs Maven
       - name: Maven build
