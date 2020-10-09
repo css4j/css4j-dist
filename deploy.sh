@@ -18,22 +18,24 @@ sha1sum -b pom.xml|awk '{print $1}' > ${GROUPDIR}/css4j-dist/${1}/css4j-dist-${1
 md5sum -b pom.xml|awk '{print $1}' > ${GROUPDIR}/css4j-dist/${1}/css4j-dist-${1}.pom.md5
 mv -f ${GROUPDIR}/css4j-dist/maven-metadata-local.xml ${GROUPDIR}/css4j-dist/maven-metadata.xml
 # Tokenproducer
-if [ -f ${GROUPDIR}/tokenproducer/maven-metadata.xml ]; then
-	mv -f ${GROUPDIR}/tokenproducer/maven-metadata.xml ${GROUPDIR}/tokenproducer/maven-metadata-local.xml
+if [ ! -f ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.jar ]; then
+	if [ -f ${GROUPDIR}/tokenproducer/maven-metadata.xml ]; then
+		mv -f ${GROUPDIR}/tokenproducer/maven-metadata.xml ${GROUPDIR}/tokenproducer/maven-metadata-local.xml
+	fi
+	mvn install:install-file -Dfile=jar/tokenproducer-${2}.jar -DpomFile=tokenproducer/pom.xml -DgroupId=io.sf.carte -DartifactId=tokenproducer -Dversion=${2} -Dpackaging=jar -DlocalRepositoryPath=${REPODIR}
+	mvn install:install-file -Dfile=jar/tokenproducer-${2}-sources.jar -DgroupId=io.sf.carte -DartifactId=tokenproducer -Dversion=${2} -Dpackaging=jar -Dclassifier=sources -DlocalRepositoryPath=${REPODIR}
+	mvn install:install-file -Dfile=jar/tokenproducer-${2}-javadoc.jar -DgroupId=io.sf.carte -DartifactId=tokenproducer -Dversion=${2} -Dpackaging=jar -Dclassifier=javadoc -DlocalRepositoryPath=${REPODIR}
+	# Digests
+	sha1sum -b tokenproducer/pom.xml|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.pom.sha1
+	md5sum -b tokenproducer/pom.xml|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.pom.md5
+	sha1sum -b jar/tokenproducer-${2}.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.jar.sha1
+	md5sum -b jar/tokenproducer-${2}.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.jar.md5
+	sha1sum -b jar/tokenproducer-${2}-sources.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-sources.jar.sha1
+	md5sum -b jar/tokenproducer-${2}-sources.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-sources.jar.md5
+	sha1sum -b jar/tokenproducer-${2}-javadoc.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-javadoc.jar.sha1
+	md5sum -b jar/tokenproducer-${2}-javadoc.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-javadoc.jar.md5
+	mv -f ${GROUPDIR}/tokenproducer/maven-metadata-local.xml ${GROUPDIR}/tokenproducer/maven-metadata.xml
 fi
-mvn install:install-file -Dfile=jar/tokenproducer-${2}.jar -DpomFile=tokenproducer/pom.xml -DgroupId=io.sf.carte -DartifactId=tokenproducer -Dversion=${2} -Dpackaging=jar -DlocalRepositoryPath=${REPODIR}
-mvn install:install-file -Dfile=jar/tokenproducer-${2}-sources.jar -DgroupId=io.sf.carte -DartifactId=tokenproducer -Dversion=${2} -Dpackaging=jar -Dclassifier=sources -DlocalRepositoryPath=${REPODIR}
-mvn install:install-file -Dfile=jar/tokenproducer-${2}-javadoc.jar -DgroupId=io.sf.carte -DartifactId=tokenproducer -Dversion=${2} -Dpackaging=jar -Dclassifier=javadoc -DlocalRepositoryPath=${REPODIR}
-# Digests
-sha1sum -b tokenproducer/pom.xml|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.pom.sha1
-md5sum -b tokenproducer/pom.xml|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.pom.md5
-sha1sum -b jar/tokenproducer-${2}.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.jar.sha1
-md5sum -b jar/tokenproducer-${2}.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.jar.md5
-sha1sum -b jar/tokenproducer-${2}-sources.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-sources.jar.sha1
-md5sum -b jar/tokenproducer-${2}-sources.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-sources.jar.md5
-sha1sum -b jar/tokenproducer-${2}-javadoc.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-javadoc.jar.sha1
-md5sum -b jar/tokenproducer-${2}-javadoc.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-javadoc.jar.md5
-mv -f ${GROUPDIR}/tokenproducer/maven-metadata-local.xml ${GROUPDIR}/tokenproducer/maven-metadata.xml
 # Carte Util
 if [ -f ${GROUPDIR}/carte-util/maven-metadata.xml ]; then
 	mv -f ${GROUPDIR}/carte-util/maven-metadata.xml ${GROUPDIR}/carte-util/maven-metadata-local.xml
