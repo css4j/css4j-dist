@@ -89,3 +89,5 @@ md5sum -b jar/css4j-awt-${1}-sources.jar|awk '{print $1}' > ${GROUPDIR}/css4j-aw
 sha1sum -b jar/css4j-awt-${1}-javadoc.jar|awk '{print $1}' > ${GROUPDIR}/css4j-awt/${1}/css4j-awt-${1}-javadoc.jar.sha1
 md5sum -b jar/css4j-awt-${1}-javadoc.jar|awk '{print $1}' > ${GROUPDIR}/css4j-awt/${1}/css4j-awt-${1}-javadoc.jar.md5
 mv -f ${GROUPDIR}/css4j-awt/maven-metadata-local.xml ${GROUPDIR}/css4j-awt/maven-metadata.xml
+# Generate indexes
+generate_directory_index_caddystyle.py -r ${REPODIR}/io
