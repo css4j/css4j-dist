@@ -75,7 +75,7 @@ fi
 BOLD=$(tput bold)
 RESET=$(tput sgr0)
 echo ${BOLD}Now execute:
-echo -n 'export JAVA_HOME="/usr/lib/jvm/java-14-openjdk-amd64/"'
+echo -n 'export JAVA_HOME="/usr/lib/jvm/java-15-openjdk-amd64/"'
 echo ${RESET} '(or your path to JDK 15 or higher)'${BOLD}
 echo mvn
 echo mv */build/*.jar jar
