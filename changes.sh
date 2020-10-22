@@ -9,7 +9,7 @@ if [[ $# -eq 0 ]] ; then
 	echo "No version supplied (e.g. '3.0.1')"
 	exit 1
 fi
-OLDTAG=`git tag -l --sort=-taggerdate|head -1`
+OLDTAG=`git tag -l --merged master --sort=-taggerdate|head -1`
 echo "Writing changes from tag $OLDTAG"
 TITLE="CSS4J CHANGES"
 VERHDR="Version ${1}"
@@ -30,11 +30,12 @@ git log --reverse --pretty=format:%s ${OLDTAG}..|sed -e 's/^/- /'|fold -s|sed -r
 cd ../xml-dtd
 echo -en "\\n\\r\\n * XML-DTD module:\\r\\n">>${OUTFILE}
 git log --reverse --pretty=format:%s ${OLDTAG}..|sed -e 's/^/- /'|fold -s|sed -r 's/^([^-])/  \1/'|sed -e 's/$/\r/'>>${OUTFILE}
-cd ../tokenproducer
-echo -en "\\n\\r\\n * Tokenproducer module:\\r\\n">>${OUTFILE}
-git log --reverse --pretty=format:%s ${OLDTAG}..|sed -e 's/^/- /'|fold -s|sed -r 's/^([^-])/  \1/'|sed -e 's/$/\r/'>>${OUTFILE}
 cd ../carte-util
 echo -en "\\n\\r\\n * Util module:\\r\\n">>${OUTFILE}
+git log --reverse --pretty=format:%s ${OLDTAG}..|sed -e 's/^/- /'|fold -s|sed -r 's/^([^-])/  \1/'|sed -e 's/$/\r/'>>${OUTFILE}
+cd ../tokenproducer
+OLDTAG=`git tag -l --merged master --sort=-taggerdate|head -1`
+echo -en "\\n\\r\\n * Tokenproducer module:\\r\\n">>${OUTFILE}
 git log --reverse --pretty=format:%s ${OLDTAG}..|sed -e 's/^/- /'|fold -s|sed -r 's/^([^-])/  \1/'|sed -e 's/$/\r/'>>${OUTFILE}
 echo -en "\\n">>${OUTFILE}
 cd ../css4j-dist
