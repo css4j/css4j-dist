@@ -2,11 +2,21 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 2.1.1 - September 16, 2020
-----------------------------------
+Release 2.2.0 - October 22, 2020
+--------------------------------
 
- This release contains several fixes over 2.1.0, and deprecates the class
-doc.agent.AgentUtil in preparation for 3.0. Use util.agent.AgentUtil instead.
+Release Highlights
+------------------
+ - Previous versions are vulnerable to DoS attacks, and the new protections use
+   the new CSSDocument.isAuthorizedOrigin(URL) method.
+ - The method ErrorHandler.hasErrors() now returns true if there are I/O errors.
+   Those errors were previously considered transient, and therefore weren't
+   appearing there.
+ - On attribute nodes, getTextContent() now returns the attribute value instead
+   of the empty string.
+
+ These new behaviors mean that this release is not fully backwards-compatible
+with 2.1, so the minor version was bumped to 2.2.
 
 
 Upgrading from 2.0
