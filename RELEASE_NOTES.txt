@@ -130,7 +130,8 @@ Software dependencies
  To build this library you need:
 
 - The JCLF package. Version 4.0.4 or higher is required. Go to
-  https://sourceforge.net/projects/jclf for downloads.
+  https://sourceforge.net/projects/jclf for downloads, or install with the
+  release-scripts/install-jclf.sh script.
 
 - The SLF4J package, which is a logging package. See http://www.slf4j.org/ 
   for more information.
