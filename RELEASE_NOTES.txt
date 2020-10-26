@@ -147,7 +147,8 @@ Software dependencies
  To build this library you need:
 
 - The JCLF package. Version 4.0.4 or higher is required. Go to
-  https://sourceforge.net/projects/jclf for downloads.
+  https://sourceforge.net/projects/jclf for downloads, or install with the
+  release-scripts/install-jclf.sh script.
 
 - The W3C SAC classes. Download sac.jar from http://www.w3.org/Style/CSS/SAC/
 
