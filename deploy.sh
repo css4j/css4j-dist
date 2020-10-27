@@ -3,7 +3,7 @@
 # Deploy artifacts to temporary css4j.github.io repository.
 #
 if [[ $# -ne 2 ]] ; then
-	echo "No versions supplied (e.g. '3.1.0 1.0.0')"
+	echo "No versions supplied (e.g. '3.2.0 1.0.0')"
 	exit 1
 fi
 REPODIR="${HOME}/www/css4j.github.io/maven"
@@ -14,8 +14,9 @@ if [ -f ${GROUPDIR}/css4j-dist/maven-metadata.xml ]; then
 fi
 mvn install:install-file -Dfile=pom.xml -DpomFile=pom.xml -DgroupId=io.sf.carte -DartifactId=css4j-dist -Dversion=${1} -Dpackaging=pom -DlocalRepositoryPath=${REPODIR}
 # Digests: '-DcreateChecksum=true' did not work
-sha1sum -b pom.xml|awk '{print $1}' > ${GROUPDIR}/css4j-dist/${1}/css4j-dist-${1}.pom.sha1
-md5sum -b pom.xml|awk '{print $1}' > ${GROUPDIR}/css4j-dist/${1}/css4j-dist-${1}.pom.md5
+dos2unix -q ${GROUPDIR}/css4j-dist/${1}/css4j-dist-${1}.pom
+sha1sum -b ${GROUPDIR}/css4j-dist/${1}/css4j-dist-${1}.pom|awk '{print $1}' > ${GROUPDIR}/css4j-dist/${1}/css4j-dist-${1}.pom.sha1
+md5sum -b ${GROUPDIR}/css4j-dist/${1}/css4j-dist-${1}.pom|awk '{print $1}' > ${GROUPDIR}/css4j-dist/${1}/css4j-dist-${1}.pom.md5
 mv -f ${GROUPDIR}/css4j-dist/maven-metadata-local.xml ${GROUPDIR}/css4j-dist/maven-metadata.xml
 # Tokenproducer
 if [ ! -f ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.jar ]; then
@@ -26,8 +27,9 @@ if [ ! -f ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.jar ]; then
 	mvn install:install-file -Dfile=jar/tokenproducer-${2}-sources.jar -DgroupId=io.sf.carte -DartifactId=tokenproducer -Dversion=${2} -Dpackaging=jar -Dclassifier=sources -DlocalRepositoryPath=${REPODIR}
 	mvn install:install-file -Dfile=jar/tokenproducer-${2}-javadoc.jar -DgroupId=io.sf.carte -DartifactId=tokenproducer -Dversion=${2} -Dpackaging=jar -Dclassifier=javadoc -DlocalRepositoryPath=${REPODIR}
 	# Digests
-	sha1sum -b tokenproducer/pom.xml|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.pom.sha1
-	md5sum -b tokenproducer/pom.xml|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.pom.md5
+	dos2unix -q ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.pom
+	sha1sum -b ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.pom|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.pom.sha1
+	md5sum -b ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.pom|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.pom.md5
 	sha1sum -b jar/tokenproducer-${2}.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.jar.sha1
 	md5sum -b jar/tokenproducer-${2}.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}.jar.md5
 	sha1sum -b jar/tokenproducer-${2}-sources.jar|awk '{print $1}' > ${GROUPDIR}/tokenproducer/${2}/tokenproducer-${2}-sources.jar.sha1
@@ -44,8 +46,9 @@ mvn install:install-file -Dfile=jar/carte-util-${1}.jar -DpomFile=carte-util/pom
 mvn install:install-file -Dfile=jar/carte-util-${1}-sources.jar -DgroupId=io.sf.carte -DartifactId=carte-util -Dversion=${1} -Dpackaging=jar -Dclassifier=sources -DlocalRepositoryPath=${REPODIR}
 mvn install:install-file -Dfile=jar/carte-util-${1}-javadoc.jar -DgroupId=io.sf.carte -DartifactId=carte-util -Dversion=${1} -Dpackaging=jar -Dclassifier=javadoc -DlocalRepositoryPath=${REPODIR}
 # Digests
-sha1sum -b carte-util/pom.xml|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}.pom.sha1
-md5sum -b carte-util/pom.xml|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}.pom.md5
+dos2unix -q ${GROUPDIR}/carte-util/${1}/carte-util-${1}.pom
+sha1sum -b ${GROUPDIR}/carte-util/${1}/carte-util-${1}.pom|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}.pom.sha1
+md5sum -b ${GROUPDIR}/carte-util/${1}/carte-util-${1}.pom|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}.pom.md5
 sha1sum -b jar/carte-util-${1}.jar|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}.jar.sha1
 md5sum -b jar/carte-util-${1}.jar|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}.jar.md5
 sha1sum -b jar/carte-util-${1}-sources.jar|awk '{print $1}' > ${GROUPDIR}/carte-util/${1}/carte-util-${1}-sources.jar.sha1
@@ -61,8 +64,9 @@ mvn install:install-file -Dfile=jar/xml-dtd-${1}.jar -DpomFile=xml-dtd/pom.xml -
 mvn install:install-file -Dfile=jar/xml-dtd-${1}-sources.jar -DgroupId=io.sf.carte -DartifactId=xml-dtd -Dversion=${1} -Dpackaging=jar -Dclassifier=sources -DlocalRepositoryPath=${REPODIR}
 mvn install:install-file -Dfile=jar/xml-dtd-${1}-javadoc.jar -DgroupId=io.sf.carte -DartifactId=xml-dtd -Dversion=${1} -Dpackaging=jar -Dclassifier=javadoc -DlocalRepositoryPath=${REPODIR}
 # Digests
-sha1sum -b xml-dtd/pom.xml|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}.pom.sha1
-md5sum -b xml-dtd/pom.xml|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}.pom.md5
+dos2unix -q ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}.pom
+sha1sum -b ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}.pom|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}.pom.sha1
+md5sum -b ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}.pom|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}.pom.md5
 sha1sum -b jar/xml-dtd-${1}.jar|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}.jar.sha1
 md5sum -b jar/xml-dtd-${1}.jar|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}.jar.md5
 sha1sum -b jar/xml-dtd-${1}-sources.jar|awk '{print $1}' > ${GROUPDIR}/xml-dtd/${1}/xml-dtd-${1}-sources.jar.sha1
@@ -79,8 +83,9 @@ mvn install:install-file -Dfile=jar/css4j-${1}-sources.jar -DgroupId=io.sf.carte
 mvn install:install-file -Dfile=jar/css4j-${1}-javadoc.jar -DgroupId=io.sf.carte -DartifactId=css4j -Dversion=${1} -Dpackaging=jar -Dclassifier=javadoc -DlocalRepositoryPath=${REPODIR}
 mvn install:install-file -Dfile=jar/css4j-${1}-tests.jar -DgroupId=io.sf.carte -DartifactId=css4j -Dversion=${1} -Dpackaging=jar -Dclassifier=tests -DlocalRepositoryPath=${REPODIR}
 # Digests
-sha1sum -b css4j/pom.xml|awk '{print $1}' > ${GROUPDIR}/css4j/${1}/css4j-${1}.pom.sha1
-md5sum -b css4j/pom.xml|awk '{print $1}' > ${GROUPDIR}/css4j/${1}/css4j-${1}.pom.md5
+dos2unix -q ${GROUPDIR}/css4j/${1}/css4j-${1}.pom
+sha1sum -b ${GROUPDIR}/css4j/${1}/css4j-${1}.pom|awk '{print $1}' > ${GROUPDIR}/css4j/${1}/css4j-${1}.pom.sha1
+md5sum -b ${GROUPDIR}/css4j/${1}/css4j-${1}.pom|awk '{print $1}' > ${GROUPDIR}/css4j/${1}/css4j-${1}.pom.md5
 sha1sum -b jar/css4j-${1}.jar|awk '{print $1}' > ${GROUPDIR}/css4j/${1}/css4j-${1}.jar.sha1
 md5sum -b jar/css4j-${1}.jar|awk '{print $1}' > ${GROUPDIR}/css4j/${1}/css4j-${1}.jar.md5
 sha1sum -b jar/css4j-${1}-sources.jar|awk '{print $1}' > ${GROUPDIR}/css4j/${1}/css4j-${1}-sources.jar.sha1
@@ -98,8 +103,9 @@ mvn install:install-file -Dfile=jar/css4j-agent-${1}.jar -DpomFile=css4j-agent/p
 mvn install:install-file -Dfile=jar/css4j-agent-${1}-sources.jar -DgroupId=io.sf.carte -DartifactId=css4j-agent -Dversion=${1} -Dpackaging=jar -Dclassifier=sources -DlocalRepositoryPath=${REPODIR}
 mvn install:install-file -Dfile=jar/css4j-agent-${1}-javadoc.jar -DgroupId=io.sf.carte -DartifactId=css4j-agent -Dversion=${1} -Dpackaging=jar -Dclassifier=javadoc -DlocalRepositoryPath=${REPODIR}
 # Digests
-sha1sum -b css4j-agent/pom.xml|awk '{print $1}' > ${GROUPDIR}/css4j-agent/${1}/css4j-agent-${1}.pom.sha1
-md5sum -b css4j-agent/pom.xml|awk '{print $1}' > ${GROUPDIR}/css4j-agent/${1}/css4j-agent-${1}.pom.md5
+dos2unix -q ${GROUPDIR}/css4j-agent/${1}/css4j-agent-${1}.pom
+sha1sum -b ${GROUPDIR}/css4j-agent/${1}/css4j-agent-${1}.pom|awk '{print $1}' > ${GROUPDIR}/css4j-agent/${1}/css4j-agent-${1}.pom.sha1
+md5sum -b ${GROUPDIR}/css4j-agent/${1}/css4j-agent-${1}.pom|awk '{print $1}' > ${GROUPDIR}/css4j-agent/${1}/css4j-agent-${1}.pom.md5
 sha1sum -b jar/css4j-agent-${1}.jar|awk '{print $1}' > ${GROUPDIR}/css4j-agent/${1}/css4j-agent-${1}.jar.sha1
 md5sum -b jar/css4j-agent-${1}.jar|awk '{print $1}' > ${GROUPDIR}/css4j-agent/${1}/css4j-agent-${1}.jar.md5
 sha1sum -b jar/css4j-agent-${1}-sources.jar|awk '{print $1}' > ${GROUPDIR}/css4j-agent/${1}/css4j-agent-${1}-sources.jar.sha1
@@ -116,8 +122,9 @@ mvn install:install-file -Dfile=jar/css4j-dom4j-${1}-sources.jar -DgroupId=io.sf
 mvn install:install-file -Dfile=jar/css4j-dom4j-${1}-javadoc.jar -DgroupId=io.sf.carte -DartifactId=css4j-dom4j -Dversion=${1} -Dpackaging=jar -Dclassifier=javadoc -DlocalRepositoryPath=${REPODIR}
 mvn install:install-file -Dfile=jar/css4j-dom4j-${1}-tests.jar -DgroupId=io.sf.carte -DartifactId=css4j-dom4j -Dversion=${1} -Dpackaging=jar -Dclassifier=tests -DlocalRepositoryPath=${REPODIR}
 # Digests
-sha1sum -b css4j-dom4j/pom.xml|awk '{print $1}' > ${GROUPDIR}/css4j-dom4j/${1}/css4j-dom4j-${1}.pom.sha1
-md5sum -b css4j-dom4j/pom.xml|awk '{print $1}' > ${GROUPDIR}/css4j-dom4j/${1}/css4j-dom4j-${1}.pom.md5
+dos2unix -q ${GROUPDIR}/css4j-dom4j/${1}/css4j-dom4j-${1}.pom
+sha1sum -b ${GROUPDIR}/css4j-dom4j/${1}/css4j-dom4j-${1}.pom|awk '{print $1}' > ${GROUPDIR}/css4j-dom4j/${1}/css4j-dom4j-${1}.pom.sha1
+md5sum -b ${GROUPDIR}/css4j-dom4j/${1}/css4j-dom4j-${1}.pom|awk '{print $1}' > ${GROUPDIR}/css4j-dom4j/${1}/css4j-dom4j-${1}.pom.md5
 sha1sum -b jar/css4j-dom4j-${1}.jar|awk '{print $1}' > ${GROUPDIR}/css4j-dom4j/${1}/css4j-dom4j-${1}.jar.sha1
 md5sum -b jar/css4j-dom4j-${1}.jar|awk '{print $1}' > ${GROUPDIR}/css4j-dom4j/${1}/css4j-dom4j-${1}.jar.md5
 sha1sum -b jar/css4j-dom4j-${1}-sources.jar|awk '{print $1}' > ${GROUPDIR}/css4j-dom4j/${1}/css4j-dom4j-${1}-sources.jar.sha1
@@ -133,8 +140,9 @@ mvn install:install-file -Dfile=jar/css4j-awt-${1}.jar -DpomFile=css4j-awt/pom.x
 mvn install:install-file -Dfile=jar/css4j-awt-${1}-sources.jar -DgroupId=io.sf.carte -DartifactId=css4j-awt -Dversion=${1} -Dpackaging=jar -Dclassifier=sources -DlocalRepositoryPath=${REPODIR}
 mvn install:install-file -Dfile=jar/css4j-awt-${1}-javadoc.jar -DgroupId=io.sf.carte -DartifactId=css4j-awt -Dversion=${1} -Dpackaging=jar -Dclassifier=javadoc -DlocalRepositoryPath=${REPODIR}
 # Digests
-sha1sum -b css4j-awt/pom.xml|awk '{print $1}' > ${GROUPDIR}/css4j-awt/${1}/css4j-awt-${1}.pom.sha1
-md5sum -b css4j-awt/pom.xml|awk '{print $1}' > ${GROUPDIR}/css4j-awt/${1}/css4j-awt-${1}.pom.md5
+dos2unix -q ${GROUPDIR}/css4j-awt/${1}/css4j-awt-${1}.pom
+sha1sum -b ${GROUPDIR}/css4j-awt/${1}/css4j-awt-${1}.pom|awk '{print $1}' > ${GROUPDIR}/css4j-awt/${1}/css4j-awt-${1}.pom.sha1
+md5sum -b ${GROUPDIR}/css4j-awt/${1}/css4j-awt-${1}.pom|awk '{print $1}' > ${GROUPDIR}/css4j-awt/${1}/css4j-awt-${1}.pom.md5
 sha1sum -b jar/css4j-awt-${1}.jar|awk '{print $1}' > ${GROUPDIR}/css4j-awt/${1}/css4j-awt-${1}.jar.sha1
 md5sum -b jar/css4j-awt-${1}.jar|awk '{print $1}' > ${GROUPDIR}/css4j-awt/${1}/css4j-awt-${1}.jar.md5
 sha1sum -b jar/css4j-awt-${1}-sources.jar|awk '{print $1}' > ${GROUPDIR}/css4j-awt/${1}/css4j-awt-${1}-sources.jar.sha1
