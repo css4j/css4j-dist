@@ -4,6 +4,8 @@
 #
 # Assumes that the $TMP environment variable points to a temporary directory.
 #
+LOCALREPO=${HOME}/.m2/repository
+#
 function install() {
 PLUGIN=org.apache.maven.plugins:maven-dependency-plugin:2.9:get
 REMOTEREPO=https://css4j.github.io/maven/
@@ -38,3 +40,5 @@ install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j-dom4j
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
+#
+rm ${LOCALREPO}/io/sf/carte/*/*/_remote.repositories

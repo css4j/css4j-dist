@@ -6,6 +6,7 @@
 #
 PLUGIN=org.apache.maven.plugins:maven-dependency-plugin:2.9:get
 REMOTEREPO=https://css4j.github.io/maven/
+LOCALREPO=${HOME}/.m2/repository
 function install() {
 mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${1}:${2}:${3} -Ddest=${TMP}/${2}-${3}.jar
 mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${1}:${2}:${3} -Dpackaging=pom -Ddest=${TMP}/pom.xml
@@ -19,7 +20,9 @@ GROUP=xmlpull
 ARTIFACT=xmlpull
 VERSION=1.2.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
+rm ${LOCALREPO}/xmlpull/${ARTIFACT}/${VERSION}/_remote.repositories
 #
 GROUP=xpp3
 ARTIFACT=xpp3_min
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
+rm ${LOCALREPO}/xpp3/${ARTIFACT}/${VERSION}/_remote.repositories
