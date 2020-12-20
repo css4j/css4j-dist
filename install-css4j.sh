@@ -19,7 +19,7 @@ rm ${TMP}/${2}-${3}.jar ${TMP}/${2}-${3}-sources.jar ${TMP}/pom.xml
 #
 GROUP=io.sf.carte
 ARTIFACT=css4j
-VERSION=1.1.0
+VERSION=1.2.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j-agent
