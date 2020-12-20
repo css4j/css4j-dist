@@ -2,27 +2,44 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 1.1.0 - October 22, 2020
---------------------------------
+Release 1.2.0 - December 20, 2020
+---------------------------------
 
 Release Highlights
 ------------------
- This release backports a few 3.x improvements to the 1.x branch, although users
-should upgrade to 3.1 or later as soon as possible. When upgrading, please keep
-in mind that 2 and 3.x releases require Java 8 or higher.
+ The 1-stable branch is supposed to be superseded, but there are people still
+downloading 1.x artifacts so this release includes the 1-stable backports of
+several 3.x improvements. However, users are encouraged to upgrade to 3.2 or
+later as soon as possible. When upgrading, please keep in mind that 2 and 3.x
+releases require Java 8 or higher.
 
  Notable changes:
 
- - Previous versions are vulnerable to DoS attacks, and the new protections use
-   the new CSSDocument.isAuthorizedOrigin(URL) method.
- - The method ErrorHandler.hasErrors() now returns true if there are I/O errors.
-   Those errors were previously considered transient, and therefore weren't
-   appearing there.
- - On attribute nodes, getTextContent() now returns the attribute value instead
-   of the empty string.
+- New 'geom' package.
+- ":any-link" was overlooked but is now supported. ":link" and ":visited" now
+  only apply to the link-related HTML elements and anything with a "xlink:href",
+  while previously any element with an "href" attribute was matching.
+- Loads of improvements and fixes to the native DOM implementation. The new
+  element-name iterator is a time saver. If you use native DOM, you are invited
+  to upgrade.
+- In the native DOM and DOM4J, embedded style sheets are no longer used if they
+  belong to a different namespace than the document element, preventing -for
+  example- potential clashes with SVG styles and providing less overhead for the
+  style computations when many SVG elements are present. Web browsers do not
+  make this distinction about STYLE elements though, but IMHO is the right
+  behaviour to have.
+- A security loophole was fixed in the DOM wrapper, which could allow setting an
+  unsafe base href.
+- DOM4J module now depends on xmlpull-xpp3 1.2 artifact from
+  https://github.com/xmlpull-xpp3/xmlpull-xpp3 instead of the old xpp3. The new
+  artifact is not available from Maven Central -which is unlikely to make
+  downstream users happy- but it is an optional dependency after all.
+- In the DOM4J module, Element.setAttributeNode() and setAttributeNodeNS() were
+  not working correctly due to an upstream bug. Now css4j overrides the relevant
+  methods.
 
- These new behaviors mean that this release is not fully backwards-compatible
-with 1.0, so the minor version was bumped to 1.1.
+ These changes mean that this release is not a drop-in replacement for 1.1, so
+the minor version was bumped to 1.2.
 
 
 BUGS
@@ -164,7 +181,7 @@ To build the dom4j module the following is required:
 
 - The XPP3 Pull Parser (which is supported by this library but beware that it
   does not support entities). See:
-  http://www.extreme.indiana.edu/dist/java-repository/xpp3/distributions/
+  https://github.com/xmlpull-xpp3/xmlpull-xpp3
 
  In addition, to run the library you need:
 
