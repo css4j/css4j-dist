@@ -2,6 +2,19 @@ UPGRADING FROM PREVIOUS VERSIONS
 ================================
 
 
+Upgrading to 3.2 from 3.1
+-------------------------
+ - CSSStyleSheet.createStyleRule() now returns a CSSStyleRule.
+ - ErrorHandler.linkedSheetError() now takes a CSSStyleSheet interface from
+   css4j's 'css' package instead of 'org.w3c.dom.css'.
+ - You no longer need to set the ID attribute in the native DOM (although the
+   XMLDocumentBuilder was probably doing that for you).
+ - Native DOM & DOM4J: now only STYLE elements in the same namespace as the
+   document element are used to compute styles.
+ - The matching of ":link" and ":visited" was narrowed down (see the Release
+   Notes).
+
+
 Upgrading to 3.1 from 3.0
 -------------------------
  - If you process a document that has a remote documentURI (or no documentURI
