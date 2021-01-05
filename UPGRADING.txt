@@ -2,6 +2,11 @@ UPGRADING FROM PREVIOUS VERSIONS
 ================================
 
 
+Upgrading to 3.3 from 3.2
+-------------------------
+ - NSAC only: the 'index' parameter was removed from CSSHandler.property().
+
+
 Upgrading to 3.2 from 3.1
 -------------------------
  - CSSStyleSheet.createStyleRule() now returns a CSSStyleRule.
