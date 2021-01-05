@@ -19,11 +19,11 @@ rm ${TMP}/${2}-${3}.jar ${TMP}/${2}-${3}-sources.jar ${TMP}/pom.xml
 #
 GROUP=io.sf.carte
 ARTIFACT=tokenproducer
-VERSION=1.0.0
+VERSION=1.1.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=carte-util
-VERSION=3.2.0
+VERSION=3.3.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=xml-dtd
