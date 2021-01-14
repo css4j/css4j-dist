@@ -1,4 +1,4 @@
-<!-- POM for CSS4J. Requires JDK 12 or higher. -->
+<!-- POM for CSS4J. Requires JDK 15 or higher. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.sf.carte</groupId>
   <artifactId>css4j-dist</artifactId>
-  <version>3.3.0</version>
+  <version>3.3.1</version>
   <packaging>pom</packaging>
   <modules>
 	<module>tokenproducer</module>
