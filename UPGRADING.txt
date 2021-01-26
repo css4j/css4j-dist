@@ -1,6 +1,12 @@
 UPGRADING FROM PREVIOUS VERSIONS
 ================================
 
+Upgrading to 3.4 from 3.3
+-------------------------
+- The old rgb(a) color functional serialization with commas is now the default.
+- In CSSColorValue, ColorSpace was renamed to ColorModel. No deprecation step
+  this time, as 'ColorSpace' is to be used elsewhere.
+
 
 Upgrading to 3.3 from 3.2
 -------------------------
