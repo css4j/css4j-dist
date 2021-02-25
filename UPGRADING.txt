@@ -3,9 +3,18 @@ UPGRADING FROM PREVIOUS VERSIONS
 
 Upgrading to 3.4 from 3.3
 -------------------------
-- The old rgb(a) color functional serialization with commas is now the default.
-- In CSSColorValue, ColorSpace was renamed to ColorModel. No deprecation step
-  this time, as 'ColorSpace' is to be used elsewhere.
+ - The old rgb(a) color functional serialization with commas is now the default
+   for conversions to RGB (specified RGB values always kept the original syntax)
+   .
+ - In CSSColorValue, ColorSpace was renamed to ColorModel. No deprecation step
+   this time, as 'ColorSpace' is to be used elsewhere.
+ - CSSTypedValue.toRGBColorValue() was deprecated in favor of toRGBColor().
+ - Use new CSSColorValue.getColor() to access all colors.
+ - New StyleFormattingFactory.createComputedStyleFormattingContext() method
+   returns a new DeclarationFormattingContext.
+ - Removed method newLine(SimpleWriter) from DeclarationFormattingContext
+   interface.
+ - NSAC only: new method CSSHandler.lexicalProperty(...).
 
 
 Upgrading to 3.3 from 3.2
