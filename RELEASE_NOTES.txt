@@ -2,7 +2,7 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 3.4.0 - February 26, 2021
+Release 3.4.0 - February 28, 2021
 ---------------------------------
 
 Release Highlights

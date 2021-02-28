@@ -14,7 +14,8 @@ Upgrading to 3.4 from 3.3
    returns a new DeclarationFormattingContext.
  - Removed method newLine(SimpleWriter) from DeclarationFormattingContext
    interface.
- - NSAC only: new method CSSHandler.lexicalProperty(...).
+ - NSAC only: new method CSSHandler.lexicalProperty(...). For now, only being
+   called for one descriptor from @property rules.
 
 
 Upgrading to 3.3 from 3.2
