@@ -23,7 +23,7 @@ VERSION=1.1.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=carte-util
-VERSION=3.3.0
+VERSION=3.4.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=xml-dtd

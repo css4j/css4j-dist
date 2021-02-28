@@ -1,12 +1,12 @@
 #!/usr/bin/bash
 #
-# Install the JCLF artifact if it is not present.
+# Install the JCLF-text artifact if it is not present.
 #
 # Assumes that the $TMP environment variable points to a temporary directory.
 #
 GROUP=io.sf.jclf
-ARTIFACT=jclf
-VERSION=4.1.0
+ARTIFACT=jclf-text
+VERSION=5.0.0
 REMOTEREPO=https://css4j.github.io/maven/
 PLUGIN=org.apache.maven.plugins:maven-dependency-plugin:2.9:get
 LOCALREPO=${HOME}/.m2/repository
