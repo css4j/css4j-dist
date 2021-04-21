@@ -1,0 +1,18 @@
+pluginManagement {
+	plugins {
+		/*
+		 * extra-java-module-info plugin version is declared at gradle.properties file
+		 */
+		id 'de.jjohannes.extra-java-module-info' version "${extraJavaModuleInfoVersion}"
+	}
+}
+
+rootProject.name = 'css4j-dist'
+
+include(':tokenproducer')
+include(':carte-util')
+include(':css4j')
+include(':css4j-agent')
+include(':css4j-dom4j')
+include(':css4j-awt')
+include(':xml-dtd')

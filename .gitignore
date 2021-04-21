@@ -1,2 +1,7 @@
 /CHANGES.txt
 /gpgsign.sh
+/.gradle
+/gradle
+/gradlew
+/gradlew.bat
+/buildSrc/.gradle
