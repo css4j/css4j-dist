@@ -56,7 +56,7 @@ please use this repository **only** for the artifact groups listed in the `inclu
 Then, in your `build.gradle` file:
 ```groovy
 dependencies {
-	api "io.sf.carte:css4j:${css4jVersion}"
+    api "io.sf.carte:css4j:${css4jVersion}"
 }
 ```
 where `css4jVersion` is defined in a `gradle.properties` file.
