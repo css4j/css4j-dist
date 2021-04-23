@@ -66,18 +66,14 @@ rm -fr ${DIR}/.git
 rm ${DIR}/.gitignore
 rm ${DIR}/.gitattributes
 /usr/bin/unix2dos *.txt
-if [ ! -d release-scripts ]; then
-	mkdir release-scripts
-fi
-if [ ! -d jar ]; then
-	mkdir jar
-fi
 BOLD=$(tput bold)
 RESET=$(tput sgr0)
+echo
 echo ${BOLD}Now execute:
-echo -n 'export JAVA_HOME="/usr/lib/jvm/java-15-openjdk-amd64/"'
-echo ${RESET} '(or your path to JDK 15 or higher)'${BOLD}
-echo mvn
-echo mv */build/*.jar jar
-echo mv *.sh release-scripts
+echo
+echo -n gradle build
+echo ${RESET} "(or ${BOLD}gradle build publishToMavenLocal${RESET} to install in local Maven repository)"
+echo
+echo "To copy jar files to a 'jar' directory: ${BOLD}gradle copyJars${RESET}"
+echo "To convert line endings of top-level text files to CRLF: ${BOLD}gradle lineEndingConversion"
 echo -n ${RESET}
