@@ -59,7 +59,7 @@ dependencies {
     api "io.sf.carte:css4j:${css4jVersion}"
 }
 ```
-where `css4jVersion` is defined in a `gradle.properties` file.
+where `css4jVersion` would be defined in a `gradle.properties` file.
 
 <br/>
 
