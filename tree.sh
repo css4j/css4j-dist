@@ -65,7 +65,6 @@ ${GIT} https://github.com/css4j/${DIR}.git
 rm -fr ${DIR}/.git
 rm ${DIR}/.gitignore
 rm ${DIR}/.gitattributes
-/usr/bin/unix2dos *.txt
 BOLD=$(tput bold)
 RESET=$(tput sgr0)
 echo
