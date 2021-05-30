@@ -1,6 +1,12 @@
 UPGRADING FROM PREVIOUS VERSIONS
 ================================
 
+Upgrading to 3.5 from 3.4
+-------------------------
+ - NSAC only: now all custom properties are handled through
+   CSSHandler.lexicalProperty(...).
+
+
 Upgrading to 3.4 from 3.3
 -------------------------
  - The old rgb(a) color functional serialization with commas is now the default
