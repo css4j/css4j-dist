@@ -7,14 +7,6 @@
 # Uses 'git clone --depth 1' due to Github not supporting 'git archive'.
 #
 GIT="git clone --depth 1 -c core.autocrlf=input -c core.eol=lf"
-DIR=carte-util
-if [ -d ${DIR} ]; then
-	rm -fr ${DIR}
-fi
-${GIT} https://github.com/css4j/${DIR}.git
-rm -fr ${DIR}/.git
-rm ${DIR}/.gitignore
-rm ${DIR}/.gitattributes
 DIR=css4j
 if [ -d ${DIR} ]; then
 	rm -fr ${DIR}

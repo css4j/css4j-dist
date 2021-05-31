@@ -13,9 +13,9 @@ Release Highlights
   The previous version introduced a Gradle build, but there were some quirks
   about optional dependencies. This new release hopefully solves them.
 
-  As part of those fixes, the 'tokenproducer' and 'xml-dtd' modules are now
-  separate projects, although their jar files are included in the 'jar'
-  directory in the distribution zip file.
+  As part of those fixes, the 'tokenproducer', 'carte-util' and 'xml-dtd'
+  modules are now separate projects, although their jar files are included in
+  the 'jar' directory in the distribution zip file.
 
 
 Description
@@ -40,13 +40,12 @@ different licensing).
 
 Packaging
 ---------
- This project is divided in several modules:
+ This project is divided in four modules:
 
 - Core module: file css4j-<version>.jar
 - User agent module: file css4j-agent-<version>.jar
 - Dom4j backend module: file css4j-dom4j-<version>.jar
 - AWT module, with AWT helper classes: file css4j-awt-<version>.jar
-- Carte-util module: file carte-util-<version>.jar
 
  Depending on your use case, you may need different modules.
 
@@ -115,6 +114,9 @@ Software dependencies
 - The jclf-text module; version 5.0.0 or higher is required. Go to
   https://sourceforge.net/projects/jclf for downloads, or install with the
   release-scripts/install-jclf.sh script.
+
+- The carte-util artifact; version 3.5.1 or higher is recommended:
+  https://github.com/css4j/carte-util/releases
 
 - The xml-dtd artifact; version 3.5.1 or higher is recommended:
   https://github.com/css4j/xml-dtd/releases
