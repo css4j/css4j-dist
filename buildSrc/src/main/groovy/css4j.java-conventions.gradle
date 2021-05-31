@@ -53,7 +53,7 @@ dependencies {
 }
 
 group = 'io.sf.carte'
-version = '3.5.0'
+version = '3.5.1'
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 java {
@@ -66,7 +66,9 @@ tasks.register('copyJars', Copy) {
 	dependsOn tasks.build
 	dependsOn ':css4j:testsJar'
 	include '**/*.jar'
+	excludes = ['dom4j*.jar', 'htmlparser*.jar', 'slf4j*.jar', 'xmlpull*.jar', 'xpp3_min*.jar']
 	from layout.buildDirectory.dir("libs")
+	from configurations.runtimeClasspath
 	into "${rootDir}/jar"
 }
 
@@ -94,6 +96,7 @@ publishing {
 	publications {
 		maven(MavenPublication) {
 			from(components.java)
+			suppressAllPomMetadataWarnings()
 			pom {
 				url = "https://github.com/css4j/"
 				licenses {

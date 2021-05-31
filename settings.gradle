@@ -9,10 +9,8 @@ pluginManagement {
 
 rootProject.name = 'css4j-dist'
 
-include(':tokenproducer')
 include(':carte-util')
 include(':css4j')
 include(':css4j-agent')
 include(':css4j-dom4j')
 include(':css4j-awt')
-include(':xml-dtd')

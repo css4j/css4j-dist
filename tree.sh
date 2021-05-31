@@ -7,23 +7,7 @@
 # Uses 'git clone --depth 1' due to Github not supporting 'git archive'.
 #
 GIT="git clone --depth 1 -c core.autocrlf=input -c core.eol=lf"
-DIR=tokenproducer
-if [ -d ${DIR} ]; then
-	rm -fr ${DIR}
-fi
-${GIT} https://github.com/css4j/${DIR}.git
-rm -fr ${DIR}/.git
-rm ${DIR}/.gitignore
-rm ${DIR}/.gitattributes
 DIR=carte-util
-if [ -d ${DIR} ]; then
-	rm -fr ${DIR}
-fi
-${GIT} https://github.com/css4j/${DIR}.git
-rm -fr ${DIR}/.git
-rm ${DIR}/.gitignore
-rm ${DIR}/.gitattributes
-DIR=xml-dtd
 if [ -d ${DIR} ]; then
 	rm -fr ${DIR}
 fi
