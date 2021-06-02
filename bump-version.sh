@@ -3,7 +3,7 @@
 # Bump the version of the parent POM.
 #
 if [[ $# -eq 0 ]] ; then
-	echo "No new version supplied (e.g. '3.5.0')"
+	echo "No new version supplied (e.g. '3.5.1')"
 	exit 1
 fi
 
@@ -13,13 +13,10 @@ function bump() {
   sed -zri "s#<version>[[:space:]]*[0-9]\.[0-9]\.[0-9]+[[:space:]]*</version>([[:space:]]*)</parent>#<version>$NEWVER</version>\1</parent>#" ${1}
 }
 
-bump "../carte-util/pom.xml"
 bump "../css4j/pom.xml"
 bump "../css4j-agent/pom.xml"
 bump "../css4j-awt/pom.xml"
 bump "../css4j-dom4j/pom.xml"
-bump "../xml-dtd/pom.xml"
-bump "../tokenproducer/pom.xml"
 
 # Now the parent itself
 
@@ -28,10 +25,6 @@ git add "pom.xml"
 git commit -m "POM: bump POM version to $NEWVER."
 
 # Commit the modules
-
-cd "../carte-util"
-git add "pom.xml"
-git commit -m "POM: bump parent POM version to $NEWVER."
 
 cd "../css4j"
 git add "pom.xml"
@@ -46,14 +39,6 @@ git add "pom.xml"
 git commit -m "POM: bump parent POM version to $NEWVER."
 
 cd "../css4j-dom4j"
-git add "pom.xml"
-git commit -m "POM: bump parent POM version to $NEWVER."
-
-cd "../xml-dtd"
-git add "pom.xml"
-git commit -m "POM: bump parent POM version to $NEWVER."
-
-cd "../tokenproducer"
 git add "pom.xml"
 git commit -m "POM: bump parent POM version to $NEWVER."
 
