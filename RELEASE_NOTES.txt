@@ -2,18 +2,18 @@
                             CSS4J RELEASE NOTES
                             ===================
 
-Release 3.5.1 - May 31, 2021
+Release 3.5.1 - June 2, 2021
 ----------------------------
 
 Release Highlights
 ------------------
 
-* Gradle fixes.
+* Build fixes.
 
   The previous version introduced a Gradle build, but there were some quirks
-  about optional dependencies. This new release hopefully solves them.
+  and the old Maven build was temporarily recovered.
 
-  As part of those fixes, the 'tokenproducer', 'carte-util' and 'xml-dtd'
+  As part of this process, the 'tokenproducer', 'carte-util' and 'xml-dtd'
   modules are now separate projects, although their jar files are included in
   the 'jar' directory in the distribution zip file.
 
