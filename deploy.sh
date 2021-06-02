@@ -2,8 +2,8 @@
 #
 # Deploy artifacts to temporary css4j.github.io repository.
 #
-if [[ $# -ne 2 ]] ; then
-	echo "No versions supplied (e.g. '3.2.0 1.0.0')"
+if [[ $# -ne 1 ]] ; then
+	echo "No versions supplied (e.g. '3.5.1')"
 	exit 1
 fi
 REPODIR="${HOME}/www/css4j.github.io/maven"
