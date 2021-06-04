@@ -21,10 +21,6 @@ repositories {
 	}
 }
 
-subprojects {
-	modularity.mixedJavaRelease 8
-}
-
 sourceSets {
 	main {
 		java {
@@ -54,15 +50,54 @@ dependencies {
 
 group = 'io.sf.carte'
 version = '3.5.1'
-java.sourceCompatibility = JavaVersion.VERSION_11
 
 java {
+	sourceCompatibility = JavaVersion.VERSION_11
 	withJavadocJar()
 	withSourcesJar()
 }
 
+tasks.register('compileLegacyJava', JavaCompile) {
+	description = 'Compile to Java 8 bytecode, except module-info'
+	dependsOn tasks.compileJava
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+	source = tasks.compileJava.stableSources
+	classpath = tasks.compileJava.classpath
+	destinationDirectory = tasks.compileJava.destinationDirectory
+	modularity.inferModulePath = false
+	includes = tasks.compileJava.includes
+	excludes = tasks.compileJava.excludes
+	excludes += ['module-info.java']
+}
+
+classes.dependsOn compileLegacyJava
+
+// Check bytecode version, in case some other task screws it
+tasks.register('checkLegacyJava') {
+	description = 'Check Java 8 bytecode'
+	def classdir = sourceSets.main.output.classesDirs.files.stream().findAny().get()
+	def classfiles = fileTree(classdir).matching({it.exclude('module-info.class')}).files
+	doFirst() {
+		if (!classfiles.isEmpty()) {
+			def classfile = classfiles.stream().findAny().get()
+			if (classfile != null) {
+				def classbytes = classfile.bytes
+				def bcversion = classbytes[6] * 256 + classbytes[7]
+				if (bcversion != 52) {
+					throw new GradleException("Bytecode on " + classfile +
+							" is not valid Java 8. Version should be 52, instead is " + bcversion)
+				}
+			}
+		}
+	}
+}
+
+classes.finalizedBy checkLegacyJava
+
 // Copy jar files to 'jar' directory
 tasks.register('copyJars', Copy) {
+	description = 'Copy jar files to \'jar\' directory'
 	dependsOn tasks.build
 	dependsOn ':css4j:testsJar'
 	include '**/*.jar'
@@ -90,6 +125,12 @@ tasks.withType(Javadoc) {
 	options.addStringOption('encoding', 'UTF-8')
 	options.addStringOption('charset', 'UTF-8')
 	options.links 'https://docs.oracle.com/en/java/javase/11/docs/api/'
+}
+
+// Reproducible build
+tasks.withType(AbstractArchiveTask).configureEach {
+	preserveFileTimestamps = false
+	reproducibleFileOrder = true
 }
 
 publishing {
