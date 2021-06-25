@@ -3,7 +3,7 @@
 This repository contains the root of the css4j distribution.
 
 ## Build from source
-To build, you need a current JDK (the build is tested with version 15) and a copy of this repository first, then run the
+To build, you need a current JDK (the build is tested with version 16) and a copy of this repository first, then run the
 `tree.sh` script. For example:
 ```
     git clone https://github.com/css4j/css4j-dist.git css4j-snapshot
