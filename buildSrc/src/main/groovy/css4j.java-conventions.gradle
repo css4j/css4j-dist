@@ -49,7 +49,7 @@ dependencies {
 }
 
 group = 'io.sf.carte'
-version = '3.5.2'
+version = '3.6.0'
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_11
