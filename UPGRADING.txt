@@ -1,6 +1,19 @@
 UPGRADING FROM PREVIOUS VERSIONS
 ================================
 
+Upgrading to 3.6 from 3.5
+-------------------------
+ - Color primitives (the values implementing CSSColorValue) that use the RGB
+   color model should no longer be cast to RGBColorValue to obtain a RGBAColor.
+
+   Instead, retrieve the color via CSSColorValue.getColor() and then cast it to
+   a RGBAColor. The reason: all RGB colors implement the RGBAColor interface,
+   regardless of it being specified via rgb() or the color() function, but only
+   one of the respective parent primitive values do implement the RGBColorValue
+   interface. If you assume that 'RGB' means RGBColorValue, you may experience
+   class cast exceptions.
+
+
 Upgrading to 3.5 from 3.4
 -------------------------
  - NSAC only: now all custom properties are handled through
