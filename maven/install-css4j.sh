@@ -19,7 +19,7 @@ rm ${TMP}/${2}-${3}.jar ${TMP}/${2}-${3}-sources.jar ${TMP}/pom.xml
 #
 GROUP=io.sf.carte
 ARTIFACT=tokenproducer
-VERSION=1.1.0
+VERSION=1.1.1
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=carte-util
@@ -30,7 +30,7 @@ ARTIFACT=xml-dtd
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j
-VERSION=3.5.2
+VERSION=3.6.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j-agent
