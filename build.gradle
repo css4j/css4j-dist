@@ -1,0 +1,175 @@
+plugins {
+	id 'java-library'
+	id 'org.ajoberstar.grgit' version '4.1.0'
+	id 'de.jjohannes.extra-java-module-info' version '0.9'
+}
+
+group = 'io.sf.carte'
+
+description = 'css4j-dist'
+
+version = '3.6.1'
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ['**/src']
+			includes += ['**/*.java']
+		}
+	}
+}
+
+dependencies {
+	implementation 'io.sf.jclf:jclf-text:[5.0.0,)'
+	implementation 'io.sf.jclf:jclf-linear3:[1.0.0,)'
+	implementation 'org.dom4j:dom4j:2.1.1'
+	implementation 'org.slf4j:slf4j-api:[1.7.28,)'
+	implementation 'nu.validator:htmlparser:1.4.16'
+	implementation 'xmlpull:xmlpull:1.2.0'
+	implementation 'xpp3:xpp3_min:1.2.0'
+}
+
+extraJavaModuleInfo {
+	automaticModule('dom4j-2.1.1.jar', 'dom4j')
+	automaticModule('htmlparser-1.4.16.jar', 'htmlparser')
+}
+
+repositories {
+	maven {
+		url = uri('https://repo.maven.apache.org/maven2/')
+	}
+	maven {
+		url "https://css4j.github.io/maven/"
+		mavenContent {
+			releasesOnly()
+		}
+		content {
+			includeGroup 'io.sf.carte'
+			includeGroup 'io.sf.jclf'
+			includeGroup 'xmlpull'
+			includeGroup 'xpp3'
+		}
+	}
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_11
+}
+
+tasks.named('clean') {
+	dependsOn rmRepos
+}
+
+tasks.withType(Javadoc) {
+	options.addStringOption('Xdoclint:none', '-quiet')
+	options.addStringOption('encoding', 'UTF-8')
+	options.addStringOption('charset', 'UTF-8')
+	options.links 'https://docs.oracle.com/en/java/javase/11/docs/api/'
+	options.links 'https://dom4j.github.io/javadoc/2.1.1/'
+}
+
+// Clone all the repositories
+tasks.register('cloneRepos') {
+	dependsOn rmRepos
+
+	def gitTP
+	def gitXmlDtd
+	def gitCarteUtil
+	def gitCss4j
+	def gitCss4jAgent
+	def gitCss4jAwt
+	def gitCss4jDom4j
+
+	doFirst {
+		mkdir "$buildDir/src"
+		mkdir "$buildDir/repos"
+		gitTP = grgit.clone(dir: "$buildDir/repos/io.sf.carte.tokenproducer",
+			uri: 'https://github.com/css4j/tokenproducer.git')
+		gitXmlDtd = grgit.clone(dir: "$buildDir/repos/io.sf.carte.xml.dtd",
+			uri: 'https://github.com/css4j/xml-dtd.git')
+		gitCarteUtil = grgit.clone(dir: "$buildDir/repos/io.sf.carte.util",
+			uri: 'https://github.com/css4j/carte-util.git')
+		gitCss4j = grgit.clone(dir: "$buildDir/repos/io.sf.carte.css4j",
+			uri: 'https://github.com/css4j/css4j.git')
+		gitCss4jAgent = grgit.clone(dir: "$buildDir/repos/io.sf.carte.css4j.agent.net",
+			uri: 'https://github.com/css4j/css4j-agent.git')
+		gitCss4jAwt = grgit.clone(dir: "$buildDir/repos/io.sf.carte.css4j.awt",
+			uri: 'https://github.com/css4j/css4j-awt.git')
+		gitCss4jDom4j = grgit.clone(dir: "$buildDir/repos/io.sf.carte.css4j.dom4j",
+			uri: 'https://github.com/css4j/css4j-dom4j.git')
+		gitTP?.close()
+		gitXmlDtd?.close()
+		gitCarteUtil?.close()
+		gitCss4j?.close()
+		gitCss4jAgent?.close()
+		gitCss4jAwt?.close()
+		gitCss4jDom4j?.close()
+	}
+
+	doLast {
+		ant.move(todir: "$buildDir/src/io.sf.carte.tokenproducer") {
+			fileset(dir: "$buildDir/repos/io.sf.carte.tokenproducer/src") {
+				include(name: '**/*')
+            }
+		}
+		ant.move(todir: "$buildDir/src/io.sf.carte.xml.dtd") {
+			fileset(dir: "$buildDir/repos/io.sf.carte.xml.dtd/src") {
+				include(name: '**/*')
+            }
+		}
+		ant.move(todir: "$buildDir/src/io.sf.carte.util") {
+			fileset(dir: "$buildDir/repos/io.sf.carte.util/src") {
+				include(name: '**/*')
+            }
+		}
+		ant.move(todir: "$buildDir/src/io.sf.carte.css4j") {
+			fileset(dir: "$buildDir/repos/io.sf.carte.css4j/src") {
+				include(name: '**/*')
+            }
+		}
+		ant.move(todir: "$buildDir/src/io.sf.carte.css4j.agent.net") {
+			fileset(dir: "$buildDir/repos/io.sf.carte.css4j.agent.net/src") {
+				include(name: '**/*')
+            }
+		}
+		ant.move(todir: "$buildDir/src/io.sf.carte.css4j.awt") {
+			fileset(dir: "$buildDir/repos/io.sf.carte.css4j.awt/src") {
+				include(name: '**/*')
+            }
+		}
+		ant.move(todir: "$buildDir/src/io.sf.carte.css4j.dom4j") {
+			fileset(dir: "$buildDir/repos/io.sf.carte.css4j.dom4j/src") {
+				include(name: '**/*')
+            }
+		}
+	}
+}
+
+tasks.register('rmRepos', Delete) {
+	doFirst {
+		delete "$buildDir/src"
+		delete "$buildDir/repos"
+	}
+}
+
+// Produce a Javadoc of all modules
+tasks.register('mergedJavadoc', Javadoc) {
+	description 'Produces a merged Javadoc of all modules'
+	destinationDir = file("$buildDir/docs/javadoc")
+	title = "CSS4J ecosystem API"
+	dependsOn cloneRepos
+	dependsOn configurations.compileClasspath
+	source = ["$buildDir/src/io.sf.carte.tokenproducer",
+		"$buildDir/src/io.sf.carte.xml.dtd",
+		"$buildDir/src/io.sf.carte.util",
+		"$buildDir/src/io.sf.carte.css4j",
+		"$buildDir/src/io.sf.carte.css4j.agent.net",
+		"$buildDir/src/io.sf.carte.css4j.awt",
+		"$buildDir/src/io.sf.carte.css4j.dom4j"
+	]
+	includes += '**/*.java'
+	classpath = configurations.compileClasspath
+	options.addBooleanOption('html5', true)
+	options.overview "$buildDir/src/io.sf.carte.css4j/overview.html"
+	options.addStringOption('-module-source-path', "$buildDir/src")
+}

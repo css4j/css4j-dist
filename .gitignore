@@ -1,5 +1,3 @@
 /CHANGES.txt
 **/.gradle/
-/gradle
-/gradlew
-/gradlew.bat
+/build

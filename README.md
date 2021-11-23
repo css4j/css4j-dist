@@ -1,4 +1,4 @@
-# css4j
+# css4j distribution
 
 This repository is used for distribution of all the modules in the css4j project.
 
@@ -28,6 +28,16 @@ And then, add the following to the `<dependencies>` section of your `pom.xml`:
     <version>${css4j.version}</version>
 </dependency>
 ```
+
+<br/>
+
+## Merged javadoc of all modules
+
+To produce a merged javadoc of all the css4j modules, execute:
+```
+./gradlew mergedJavadoc
+```
+and the javadoc shall be at the `build/docs/javadoc` directory.
 
 <br/>
 
