@@ -7,22 +7,30 @@
 PLUGIN=org.apache.maven.plugins:maven-dependency-plugin:2.9:get
 REMOTEREPO=https://css4j.github.io/maven/
 LOCALREPO=${HOME}/.m2/repository
+#
+function errorCheck() {
+  if [ "$?" -ne "0" ]; then
+    echo "Exit code ${1} at ${2}"
+    exit ${1}
+  fi
+}
+#
 function install() {
-mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${1}:${2}:${3} -Ddest=${TMP}/${2}-${3}.jar
-mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${1}:${2}:${3} -Dpackaging=pom -Ddest=${TMP}/pom.xml
-mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${1}:${2}:${3} -Dclassifier=sources -Ddest=${TMP}/${2}-${3}-sources.jar
-mvn install:install-file -Dfile=${TMP}/${2}-${3}.jar -DpomFile=${TMP}/pom.xml -DgroupId=${1} -DartifactId=${2} -Dversion=${3} -Dpackaging=jar -DcreateChecksum=true
-mvn install:install-file -Dfile=${TMP}/${2}-${3}-sources.jar -DgroupId=${1} -DartifactId=${2} -Dversion=${3} -Dclassifier=sources -Dpackaging=jar -DcreateChecksum=true
-rm ${TMP}/${2}-${3}.jar ${TMP}/${2}-${3}-sources.jar ${TMP}/pom.xml
+  mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${1}:${2}:${3}
+  errorCheck "Retrieval of ${1}:${2}:${3} main artifact"
+  mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${1}:${2}:${3} -Dpackaging=pom
+  errorCheck "Retrieval of ${1}:${2}:${3} POM artifact"
+  mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${1}:${2}:${3} -Dclassifier=sources
+  errorCheck "Retrieval of ${1}:${2}:${3} source artifact"
 }
 #
 GROUP=xmlpull
 ARTIFACT=xmlpull
 VERSION=1.2.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
-rm ${LOCALREPO}/xmlpull/${ARTIFACT}/${VERSION}/_remote.repositories
+rm -f ${LOCALREPO}/xmlpull/${ARTIFACT}/${VERSION}/_remote.repositories
 #
 GROUP=xpp3
 ARTIFACT=xpp3_min
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
-rm ${LOCALREPO}/xpp3/${ARTIFACT}/${VERSION}/_remote.repositories
+rm -f ${LOCALREPO}/xpp3/${ARTIFACT}/${VERSION}/_remote.repositories

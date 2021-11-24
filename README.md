@@ -1,3 +1,5 @@
+![CI workflow](https://github.com/css4j/css4j-dist/actions/workflows/ci.yml/badge.svg)
+
 # css4j distribution
 
 This repository is used for distribution of all the modules in the css4j project.

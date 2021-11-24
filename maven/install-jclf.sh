@@ -9,24 +9,27 @@ REMOTEREPO=https://css4j.github.io/maven/
 PLUGIN=org.apache.maven.plugins:maven-dependency-plugin:2.9:get
 LOCALREPO=${HOME}/.m2/repository
 #
+function errorCheck() {
+  if [ "${1}" -ne "0" ]; then
+    echo "Exit code ${1} at ${2}"
+    exit ${1}
+  fi
+}
+#
+function install() {
+  mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${1}:${2}:${3}
+  errorCheck $? "Retrieval of ${1}:${2}:${3} main artifact"
+  mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${1}:${2}:${3} -Dpackaging=pom
+  errorCheck $? "Retrieval of ${1}:${2}:${3} POM artifact"
+  mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${1}:${2}:${3} -Dclassifier=sources
+  errorCheck $? "Retrieval of ${1}:${2}:${3} source artifact"
+  rm -f ${LOCALREPO}/io/sf/jclf/${2}/${3}/_remote.repositories
+}
+#
 ARTIFACT=jclf-text
 VERSION=5.0.0
-#
-mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${GROUP}:${ARTIFACT}:${VERSION} -Ddest=${TMP}/${ARTIFACT}-${VERSION}.jar
-mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${GROUP}:${ARTIFACT}:${VERSION} -Dpackaging=pom -Ddest=${TMP}/pom.xml
-mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${GROUP}:${ARTIFACT}:${VERSION} -Dclassifier=sources -Ddest=${TMP}/${ARTIFACT}-${VERSION}-sources.jar
-mvn install:install-file -Dfile=${TMP}/${ARTIFACT}-${VERSION}.jar -DpomFile=${TMP}/pom.xml -DgroupId=${GROUP} -DartifactId=${ARTIFACT} -Dversion=${VERSION} -Dpackaging=jar
-mvn install:install-file -Dfile=${TMP}/${ARTIFACT}-${VERSION}-sources.jar -DgroupId=${GROUP} -DartifactId=${ARTIFACT} -Dversion=${VERSION} -Dpackaging=jar -Dclassifier=sources
-rm ${TMP}/${ARTIFACT}-${VERSION}.jar ${TMP}/${ARTIFACT}-${VERSION}-sources.jar ${TMP}/pom.xml
-rm ${LOCALREPO}/io/sf/jclf/${ARTIFACT}/${VERSION}/_remote.repositories
+install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=jclf-linear3
 VERSION=1.0.0
-#
-mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${GROUP}:${ARTIFACT}:${VERSION} -Ddest=${TMP}/${ARTIFACT}-${VERSION}.jar
-mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${GROUP}:${ARTIFACT}:${VERSION} -Dpackaging=pom -Ddest=${TMP}/pom.xml
-mvn $PLUGIN -DremoteRepositories=${REMOTEREPO} -Dartifact=${GROUP}:${ARTIFACT}:${VERSION} -Dclassifier=sources -Ddest=${TMP}/${ARTIFACT}-${VERSION}-sources.jar
-mvn install:install-file -Dfile=${TMP}/${ARTIFACT}-${VERSION}.jar -DpomFile=${TMP}/pom.xml -DgroupId=${GROUP} -DartifactId=${ARTIFACT} -Dversion=${VERSION} -Dpackaging=jar
-mvn install:install-file -Dfile=${TMP}/${ARTIFACT}-${VERSION}-sources.jar -DgroupId=${GROUP} -DartifactId=${ARTIFACT} -Dversion=${VERSION} -Dpackaging=jar -Dclassifier=sources
-rm ${TMP}/${ARTIFACT}-${VERSION}.jar ${TMP}/${ARTIFACT}-${VERSION}-sources.jar ${TMP}/pom.xml
-rm ${LOCALREPO}/io/sf/jclf/${ARTIFACT}/${VERSION}/_remote.repositories
+install "${GROUP}" "${ARTIFACT}" "${VERSION}"

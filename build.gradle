@@ -59,30 +59,22 @@ java {
 tasks.register('cloneRepos') {
 	dependsOn rmRepos
 
-	def gitTP
-	def gitXmlDtd
-	def gitCarteUtil
-	def gitCss4j
-	def gitCss4jAgent
-	def gitCss4jAwt
-	def gitCss4jDom4j
-
 	doFirst {
 		mkdir "$buildDir/src"
 		mkdir "$buildDir/repos"
-		gitTP = grgit.clone(dir: "$buildDir/repos/io.sf.carte.tokenproducer",
+		def gitTP = grgit.clone(dir: "$buildDir/repos/io.sf.carte.tokenproducer",
 			uri: 'https://github.com/css4j/tokenproducer.git')
-		gitXmlDtd = grgit.clone(dir: "$buildDir/repos/io.sf.carte.xml.dtd",
+		def gitXmlDtd = grgit.clone(dir: "$buildDir/repos/io.sf.carte.xml.dtd",
 			uri: 'https://github.com/css4j/xml-dtd.git')
-		gitCarteUtil = grgit.clone(dir: "$buildDir/repos/io.sf.carte.util",
+		def gitCarteUtil = grgit.clone(dir: "$buildDir/repos/io.sf.carte.util",
 			uri: 'https://github.com/css4j/carte-util.git')
-		gitCss4j = grgit.clone(dir: "$buildDir/repos/io.sf.carte.css4j",
+		def gitCss4j = grgit.clone(dir: "$buildDir/repos/io.sf.carte.css4j",
 			uri: 'https://github.com/css4j/css4j.git')
-		gitCss4jAgent = grgit.clone(dir: "$buildDir/repos/io.sf.carte.css4j.agent.net",
+		def gitCss4jAgent = grgit.clone(dir: "$buildDir/repos/io.sf.carte.css4j.agent.net",
 			uri: 'https://github.com/css4j/css4j-agent.git')
-		gitCss4jAwt = grgit.clone(dir: "$buildDir/repos/io.sf.carte.css4j.awt",
+		def gitCss4jAwt = grgit.clone(dir: "$buildDir/repos/io.sf.carte.css4j.awt",
 			uri: 'https://github.com/css4j/css4j-awt.git')
-		gitCss4jDom4j = grgit.clone(dir: "$buildDir/repos/io.sf.carte.css4j.dom4j",
+		def gitCss4jDom4j = grgit.clone(dir: "$buildDir/repos/io.sf.carte.css4j.dom4j",
 			uri: 'https://github.com/css4j/css4j-dom4j.git')
 		gitTP?.close()
 		gitXmlDtd?.close()
@@ -97,7 +89,6 @@ tasks.register('cloneRepos') {
 
 tasks.register('rmRepos', Delete) {
 	doFirst {
-		delete "$buildDir/src"
 		delete "$buildDir/repos"
 	}
 }
