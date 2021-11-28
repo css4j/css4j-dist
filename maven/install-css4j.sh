@@ -50,6 +50,7 @@ ARTIFACT=css4j-awt
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j-dom4j
+VERSION=3.6.1
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 rm -f ${LOCALREPO}/io/sf/carte/*/*/_remote.repositories
