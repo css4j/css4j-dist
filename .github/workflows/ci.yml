@@ -21,7 +21,8 @@ jobs:
     name: Java ${{ matrix.Java }} ${{ matrix.os }} build
 
     env:
-      HOME: $GITHUB_WORKSPACE
+      HOME: ${{ github.workspace }}
+      MAVEN_OPTS: "-Dmaven.repo.local=${{ github.workspace }}/.m2/repository"
 
     steps:
       # Check-out the repository under $GITHUB_WORKSPACE
@@ -46,6 +47,36 @@ jobs:
 
       - name: Install CSS4J
         run: ./maven/install-css4j.sh
+
+      - name: Check the JCLF-text install
+        run: ls -l ~/.m2/repository/io/sf/jclf/jclf-text
+
+      - name: Check the XMLPull install
+        run: ls -l ~/.m2/repository/xmlpull/xmlpull
+
+      - name: Check the XPP3 install
+        run: ls -l ~/.m2/repository/xpp3/xpp3_min
+
+      - name: Check the tokenproducer install
+        run: ls -l ~/.m2/repository/io/sf/carte/tokenproducer
+
+      - name: Check the carte-util install
+        run: ls -l ~/.m2/repository/io/sf/carte/carte-util
+
+      - name: Check the xml-dtd install
+        run: ls -l ~/.m2/repository/io/sf/carte/xml-dtd
+
+      - name: Check the css4j install
+        run: ls -l ~/.m2/repository/io/sf/carte/css4j
+
+      - name: Check the css4j-agent install
+        run: ls -l ~/.m2/repository/io/sf/carte/css4j-agent
+
+      - name: Check the css4j-awt install
+        run: ls -l ~/.m2/repository/io/sf/carte/css4j-awt
+
+      - name: Check the css4j-dom4j install
+        run: ls -l ~/.m2/repository/io/sf/carte/css4j-dom4j
 
       # Check the production of Javadocs
       - name: Build modular Javadoc

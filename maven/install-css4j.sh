@@ -2,8 +2,6 @@
 #
 # Install the CSS4J artifacts to the local Maven repository.
 #
-# Assumes that the $TMP environment variable points to a temporary directory.
-#
 LOCALREPO=${HOME}/.m2/repository
 #
 PLUGIN=org.apache.maven.plugins:maven-dependency-plugin:2.9:get

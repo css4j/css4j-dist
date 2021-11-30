@@ -2,8 +2,6 @@
 #
 # Install the jclf-text and jclf-linear3 artifacts.
 #
-# Assumes that the $TMP environment variable points to a temporary directory.
-#
 GROUP=io.sf.jclf
 REMOTEREPO=https://css4j.github.io/maven/
 PLUGIN=org.apache.maven.plugins:maven-dependency-plugin:2.9:get

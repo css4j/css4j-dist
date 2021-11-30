@@ -2,8 +2,6 @@
 #
 # Install the xmlpull-xpp3 artifacts to the local Maven repository.
 #
-# Assumes that the $TMP environment variable points to a temporary directory.
-#
 PLUGIN=org.apache.maven.plugins:maven-dependency-plugin:2.9:get
 REMOTEREPO=https://css4j.github.io/maven/
 LOCALREPO=${HOME}/.m2/repository
