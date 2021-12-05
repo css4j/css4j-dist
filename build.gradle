@@ -60,7 +60,6 @@ tasks.register('cloneRepos') {
 	dependsOn rmRepos
 
 	doFirst {
-		mkdir "$buildDir/src"
 		mkdir "$buildDir/repos"
 		def gitTP = grgit.clone(dir: "$buildDir/repos/io.sf.carte.tokenproducer",
 			uri: 'https://github.com/css4j/tokenproducer.git')
