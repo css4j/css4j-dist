@@ -49,7 +49,7 @@ VERSION=3.6.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j-dom4j
-VERSION=3.7.0
+VERSION=3.7.1
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 rm -f ${LOCALREPO}/io/sf/carte/*/*/_remote.repositories
