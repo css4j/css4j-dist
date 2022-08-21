@@ -37,7 +37,7 @@ VERSION=4.1.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j
-VERSION=3.7.2
+VERSION=3.8.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j-agent
