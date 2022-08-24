@@ -14,7 +14,7 @@ dependencies {
 	implementation 'io.sf.jclf:jclf-text:5.0.0'
 	implementation 'io.sf.jclf:jclf-linear3:1.0.0'
 	implementation 'org.dom4j:dom4j:2.1.1'
-	implementation 'org.slf4j:slf4j-api:1.7.36'
+	implementation 'org.slf4j:slf4j-api:2.0.0'
 	implementation 'nu.validator:htmlparser:1.4.16'
 	implementation 'xmlpull:xmlpull:1.2.0'
 	implementation 'xpp3:xpp3_min:1.2.0'
