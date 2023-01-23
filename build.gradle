@@ -8,20 +8,19 @@ group = 'io.sf.carte'
 
 description = 'css4j-dist'
 
-version = '3.8.0'
+version = '3.9.1'
 
 dependencies {
-	implementation 'io.sf.jclf:jclf-text:5.0.0'
+	implementation 'io.sf.jclf:jclf-text:5.0.1'
 	implementation 'io.sf.jclf:jclf-linear3:1.0.0'
-	implementation 'org.dom4j:dom4j:2.1.1'
-	implementation 'org.slf4j:slf4j-api:2.0.3'
+	implementation 'org.dom4j:dom4j:2.1.4'
+	implementation 'org.slf4j:slf4j-api:2.0.6'
 	implementation 'nu.validator:htmlparser:1.4.16'
 	implementation 'xmlpull:xmlpull:1.2.0'
 	implementation 'xpp3:xpp3_min:1.2.0'
 }
 
 extraJavaModuleInfo {
-	automaticModule('dom4j-2.1.1.jar', 'dom4j')
 	automaticModule('htmlparser-1.4.16.jar', 'htmlparser')
 }
 
@@ -114,5 +113,5 @@ tasks.withType(Javadoc) {
 	options.addStringOption('encoding', 'UTF-8')
 	options.addStringOption('charset', 'UTF-8')
 	options.links 'https://docs.oracle.com/en/java/javase/11/docs/api/'
-	options.links 'https://dom4j.github.io/javadoc/2.1.1/'
+	options.links 'https://dom4j.github.io/javadoc/2.1.4/'
 }
