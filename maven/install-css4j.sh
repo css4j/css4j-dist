@@ -25,7 +25,7 @@ function install() {
 #
 GROUP=io.sf.carte
 ARTIFACT=tokenproducer
-VERSION=1.1.2
+VERSION=1.1.3
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=carte-util
