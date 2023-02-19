@@ -97,14 +97,14 @@ tasks.register('mergedJavadoc', Javadoc) {
 	source = [ "$buildDir/repos/io.sf.carte.tokenproducer/src/main/java",
 		"$buildDir/repos/io.sf.carte.xml.dtd/src",
 		"$buildDir/repos/io.sf.carte.util/src",
-		"$buildDir/repos/io.sf.carte.css4j/src",
+		"$buildDir/repos/io.sf.carte.css4j/src/main/java",
 		"$buildDir/repos/io.sf.carte.css4j.agent.net/src",
 		"$buildDir/repos/io.sf.carte.css4j.awt/src",
 		"$buildDir/repos/io.sf.carte.css4j.dom4j/src" ]
 	includes += '**/*.java'
 	classpath = configurations.compileClasspath
 	options.addBooleanOption('html5', true)
-	options.overview "$buildDir/repos/io.sf.carte.css4j/src/overview.html"
+	options.overview "$buildDir/repos/io.sf.carte.css4j/src/main/resources/overview.html"
 	options.addStringOption('-module-source-path', "$buildDir/repos/*/{src,src/main/java}")
 }
 
