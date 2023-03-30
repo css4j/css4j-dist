@@ -37,15 +37,15 @@ VERSION=4.1.1
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j
-VERSION=3.9.1
+VERSION=4.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j-agent
-VERSION=3.7.1
+VERSION=4.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j-awt
-VERSION=3.6.1
+VERSION=4.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j-dom4j
