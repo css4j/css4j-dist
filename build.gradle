@@ -106,6 +106,7 @@ tasks.register('mergedJavadoc', Javadoc) {
 	options.addBooleanOption('html5', true)
 	options.overview "$buildDir/repos/io.sf.carte.css4j/src/main/resources/overview.html"
 	options.addStringOption('-module-source-path', "$buildDir/repos/*/{src,src/main/java}")
+	exclude 'io/sf/carte/doc/style/css/impl'
 }
 
 tasks.withType(Javadoc) {
