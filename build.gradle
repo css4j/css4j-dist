@@ -8,7 +8,7 @@ group = 'io.sf.carte'
 
 description = 'css4j-dist'
 
-version = '3.9.1'
+version = '4.0-SNAPSHOT'
 
 dependencies {
 	implementation 'io.sf.jclf:jclf-text:5.0.1'
