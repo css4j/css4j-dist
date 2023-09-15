@@ -25,7 +25,7 @@ function install() {
 #
 GROUP=io.sf.carte
 ARTIFACT=tokenproducer
-VERSION=2.0.1
+VERSION=3.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=carte-util
@@ -33,11 +33,11 @@ VERSION=3.6.0
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=xml-dtd
-VERSION=4.2
+VERSION=4.2.1
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j
-VERSION=4.1
+VERSION=4.2
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j-agent
