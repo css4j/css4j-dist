@@ -1,7 +1,7 @@
 plugins {
 	id 'java-library'
 	id 'org.ajoberstar.grgit' version '5.2.2'
-	id 'org.gradlex.extra-java-module-info' version '1.8'
+	id 'org.gradlex.extra-java-module-info' version '1.9'
 }
 
 group = 'io.sf.carte'
@@ -14,7 +14,7 @@ dependencies {
 	implementation 'io.sf.jclf:jclf-text:5.0.1'
 	implementation 'io.sf.jclf:jclf-linear3:1.0.0'
 	implementation 'org.dom4j:dom4j:2.1.4'
-	implementation 'org.slf4j:slf4j-api:2.0.13'
+	implementation 'org.slf4j:slf4j-api:2.0.16'
 	implementation 'nu.validator:htmlparser:1.4.16'
 	implementation 'xmlpull:xmlpull:1.2.0'
 	implementation 'xpp3:xpp3_min:1.2.0'
