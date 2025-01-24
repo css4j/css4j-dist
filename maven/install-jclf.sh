@@ -25,9 +25,7 @@ function install() {
 }
 #
 ARTIFACT=jclf-text
-VERSION=5.0.0
-install "${GROUP}" "${ARTIFACT}" "${VERSION}"
-VERSION=5.0.1
+VERSION=5.0.2
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=jclf-linear3

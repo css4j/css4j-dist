@@ -11,7 +11,7 @@ description = 'css4j-dist'
 version = '4.0-SNAPSHOT'
 
 dependencies {
-	implementation 'io.sf.jclf:jclf-text:5.0.1'
+	implementation 'io.sf.jclf:jclf-text:5.0.2'
 	implementation 'io.sf.jclf:jclf-linear3:1.0.0'
 	implementation 'org.dom4j:dom4j:2.1.4'
 	implementation 'org.slf4j:slf4j-api:2.0.16'
@@ -29,7 +29,7 @@ repositories {
 		url = uri('https://repo.maven.apache.org/maven2/')
 	}
 	maven {
-		url "https://css4j.github.io/maven/"
+		url = "https://css4j.github.io/maven/"
 		mavenContent {
 			releasesOnly()
 		}
