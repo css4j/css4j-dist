@@ -89,7 +89,7 @@ tasks.named('clean') {
 
 // Produce a Javadoc of all modules
 tasks.register('mergedJavadoc', Javadoc) {
-	description 'Produces a merged Javadoc of all modules'
+	description = 'Produces a merged Javadoc of all modules'
 	destinationDir = file("$buildDir/docs/javadoc")
 	title = "CSS4J ecosystem API"
 	dependsOn cloneRepos
