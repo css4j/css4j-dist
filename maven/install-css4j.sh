@@ -25,7 +25,7 @@ function install() {
 #
 GROUP=io.sf.carte
 ARTIFACT=tokenproducer
-VERSION=3.0
+VERSION=3.1
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=carte-util
@@ -37,19 +37,19 @@ VERSION=4.3
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j
-VERSION=5.2
+VERSION=5.3
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j-agent
-VERSION=5.1
+VERSION=5.3
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j-awt
-VERSION=5.1
+VERSION=5.3
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 ARTIFACT=css4j-dom4j
-VERSION=5.1
+VERSION=5.3
 install "${GROUP}" "${ARTIFACT}" "${VERSION}"
 #
 rm -f ${LOCALREPO}/io/sf/carte/*/*/_remote.repositories
