@@ -69,6 +69,10 @@ jobs:
       - name: Check the css4j-dom4j install
         run: ls -l ~/.m2/repository/io/sf/carte/css4j-dom4j
 
+      # Validate wrapper to prevent potential supply chain attack
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v6
+
       # Check the production of Javadocs
       - name: Build modular Javadoc
         run: ./gradlew mergedJavadoc
